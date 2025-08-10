@@ -3,7 +3,6 @@ import Hero from "@/components/Hero"
 import SolutionInAction from "@/components/SolutionInAction"
 import BusinessROI from "@/components/BusinessROI"
 import Testimonials from "@/components/Testimonials"
-import Pricing from "@/components/Pricing"
 import Footer from "@/components/Footer"
 
 export default function Home() {
@@ -14,7 +13,6 @@ export default function Home() {
       <SolutionInAction />
       <BusinessROI />
       <Testimonials />
-      <Pricing />
       <Footer />
     </main>
   )

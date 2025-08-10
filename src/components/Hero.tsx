@@ -17,14 +17,12 @@ export default function Hero() {
         <div className="max-w-4xl">
           {/* Main Headline */}
           <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground leading-tight tracking-tight mb-6">
-            From confused to{" "}
-            <span className="text-primary">power user.</span>{" "}
-            <span className="block">Instantly.</span>
+            Your product’s new <br />Built-in expert
           </h1>
           
           {/* Sub-headline */}
           <p className="text-lg sm:text-xl lg:text-2xl text-foreground/80 leading-relaxed max-w-3xl mb-8">
-            SAIL is an intelligent layer that understands your app, enabling users to get guidance, take action, or automate entire workflows—right inside your product.
+            Sailbot is an intelligent layer that understands your app, enabling users to get guidance, take action, or automate entire workflows—right inside your product.
           </p>
           
           {/* CTA Buttons */}

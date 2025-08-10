@@ -6,8 +6,6 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -116,7 +114,52 @@
   * {
     @apply border-border outline-ring/50;
   }
+  
   body {
     @apply bg-background text-foreground;
+    font-weight: 300; /* Light body text */
+    line-height: 1.6;
+  }
+  
+  /* Heavy h1 styling */
+  h1 {
+    font-weight: 900; /* Extra heavy */
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+  
+  /* Heavy h2 styling */
+  h2 {
+    font-weight: 800; /* Very heavy */
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+  
+  /* Heavy h3 styling */
+  h3 {
+    font-weight: 700; /* Heavy */
+    line-height: 1.3;
+  }
+  
+  /* Medium h4 styling */
+  h4 {
+    font-weight: 600; /* Semi-bold */
+    line-height: 1.4;
+  }
+  
+  /* Light paragraph and body text */
+  p, span, div, li, a {
+    font-weight: 300; /* Light */
+    line-height: 1.6;
+  }
+  
+  /* Slightly heavier for important text */
+  strong, b {
+    font-weight: 500; /* Medium */
+  }
+  
+  /* Button text slightly heavier for readability */
+  button, .btn {
+    font-weight: 500; /* Medium */
   }
 }
