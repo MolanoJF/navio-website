@@ -28,8 +28,11 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       const heroEnd = windowHeight * 0.8 // Hero section ends at 80% of viewport height
       const businessROIStart = windowHeight * 0.8
       const businessROIEnd = windowHeight * 2.2 // BusinessROI section ends around 2.2 viewport heights
-      const testimonialsStart = windowHeight * 2.2
-      const callToActionStart = windowHeight * 3.2 // Call to Action section starts around 3.2 viewport heights
+      const dashboardStart = windowHeight * 2.2
+      const dashboardEnd = windowHeight * 4.0 // Dashboard section extends until Call to Action starts
+      const callToActionStart = windowHeight * 4.0 // Call to Action section starts around 4.0 viewport heights
+      const callToActionEnd = windowHeight * 5.0 // Call to Action section ends around 5.0 viewport heights
+      const testimonialsStart = windowHeight * 5.0 // Testimonials section starts after Call to Action
       
       if (scrollY < heroEnd) {
         // Hero section - dark theme
@@ -50,18 +53,31 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
           document.documentElement.classList.add('dark')
           document.documentElement.classList.remove('light')
         }
-      } else if (scrollY >= testimonialsStart && scrollY < callToActionStart) {
-        // Testimonials section - maintain light theme (no transition)
+      } else if (scrollY >= dashboardStart && scrollY < dashboardEnd) {
+        // Dashboard section - maintain light theme throughout
         setThemeProgress(1)
         setTheme('light')
         document.documentElement.classList.remove('dark')
         document.documentElement.classList.add('light')
-      } else if (scrollY >= callToActionStart) {
-        // Call to Action section and beyond - maintain light theme
-        setThemeProgress(1)
-        setTheme('light')
-        document.documentElement.classList.remove('dark')
-        document.documentElement.classList.add('light')
+      } else if (scrollY >= callToActionStart && scrollY < callToActionEnd) {
+        // Call to Action section - transition from light back to dark
+        const progress = (scrollY - callToActionStart) / (callToActionEnd - callToActionStart)
+        setThemeProgress(1 - progress) // Reverse progress: 1 = light, 0 = dark
+        if (progress > 0.5) {
+          setTheme('dark')
+          document.documentElement.classList.add('dark')
+          document.documentElement.classList.remove('light')
+        } else {
+          setTheme('light')
+          document.documentElement.classList.remove('dark')
+          document.documentElement.classList.add('light')
+        }
+      } else if (scrollY >= testimonialsStart) {
+        // Testimonials section and beyond - maintain dark theme
+        setThemeProgress(0)
+        setTheme('dark')
+        document.documentElement.classList.add('dark')
+        document.documentElement.classList.remove('light')
       }
     }
 
