@@ -1,36 +1,92 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SAIL Website
 
-## Getting Started
+A premium, fully responsive landing page for **SAIL**, an AI-driven user onboarding and software intelligence platform.
 
-First, run the development server:
+## 🚀 Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+### Navbar Component
+- **Clean, minimalist design** that floats over the hero section
+- **Responsive navigation** with Product, Pricing, and Resources links
+- **Dynamic background** that becomes semi-transparent on scroll
+- **CTA buttons**: Sign in (ghost) and Build Agent (primary)
+- **Mobile-friendly** with hamburger menu
+
+### Hero Section
+- **Full viewport height** (100vh) design
+- **Center-left aligned** text content
+- **Premium typography** with the headline "From confused to power user. Instantly."
+- **Background element** ready for unicord.studio interactive integration
+- **Responsive design** across all breakpoints
+
+## 🛠️ Technology Stack
+
+- **Next.js 15** with App Router
+- **TypeScript** for type safety
+- **Tailwind CSS** for styling
+- **ShadCN UI** components
+- **Radix UI** primitives
+
+## 📱 Responsive Design
+
+The components are fully responsive across all major breakpoints:
+- **Desktop**: Full navigation with all elements visible
+- **Tablet**: Optimized spacing and typography
+- **Mobile**: Mobile-first approach with collapsible navigation
+
+## 🎨 Design Features
+
+- **Smooth animations** and transitions
+- **Glassmorphism effects** on scroll
+- **Premium color scheme** with CSS custom properties
+- **Accessibility-first** approach with proper ARIA labels
+- **Performance optimized** with minimal JavaScript
+
+## 🚀 Getting Started
+
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+2. Run the development server:
+   ```bash
+   npm run dev
+   ```
+
+3. Open [http://localhost:3000](http://localhost:3000) in your browser
+
+## 📁 Project Structure
+
+```
+src/
+├── app/
+│   ├── layout.tsx          # Root layout with metadata
+│   ├── page.tsx            # Main page with Navbar + Hero
+│   └── globals.css         # Global styles and CSS variables
+├── components/
+│   ├── ui/
+│   │   └── button.tsx      # ShadCN Button component
+│   ├── Navbar.tsx          # Navigation component
+│   └── Hero.tsx            # Hero section component
+└── lib/
+    └── utils.ts            # Utility functions
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🔧 Customization
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Colors
+The design uses CSS custom properties defined in `globals.css` for easy theming.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Typography
+Fonts are configured through Google Fonts (Geist Sans and Geist Mono) with CSS variables.
 
-## Learn More
+### Components
+All components are built with ShadCN UI patterns and can be easily customized through the `className` prop or by modifying the component variants.
 
-To learn more about Next.js, take a look at the following resources:
+## 🌟 Next Steps
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The background element in the Hero section is ready for integration with [unicord.studio](http://unicord.studio) interactive backgrounds. Simply target the `#unicord-background` element to add your interactive content.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📄 License
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is private and proprietary to SAIL.
