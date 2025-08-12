@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
 
 export default function CallToAction() {
@@ -11,8 +12,10 @@ export default function CallToAction() {
               Join thousands of users who've already made the switch.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
-                Get Started
+              <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90" asChild>
+                <Link href="/dashboard">
+                  View Dashboard
+                </Link>
               </Button>
               <Button size="lg" variant="outline" className="border-muted-foreground/20">
                 Learn More

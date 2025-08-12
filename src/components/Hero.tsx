@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import WebGLBayerBackground from "./WebGLBayerBackground"
 
@@ -30,13 +31,15 @@ export default function Hero() {
           
           {/* Sub-headline */}
           <p className="text-base sm:text-lg lg:text-xl text-foreground/80 leading-relaxed max-w-3xl mx-auto mb-8">
-            Sailbot is an intelligent layer that understands your app, enabling users to get guidance, take action, or automate entire workflows right inside your product.
+            Sailbot is an intelligent layer that understands your app, enabling users to get guidance and automate entire workflows right inside your product.
           </p>
           
           {/* CTA Button */}
           <div className="flex justify-center">
-            <Button size="lg" className="text-base px-8 py-3 h-12">
-              Get Started
+            <Button size="lg" className="text-base px-8 py-3 h-12" asChild>
+              <Link href="/dashboard">
+                View Dashboard
+              </Link>
             </Button>
           </div>
         </div>
