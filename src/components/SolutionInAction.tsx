@@ -5,40 +5,30 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 
 const tabs = [
   {
-    name: 'Visual Guidance',
-    value: 'visual-guidance',
+    name: 'Guide',
+    value: 'guide',
     icon: (
       <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
       </svg>
     ),
-    description: 'Interactive tooltips and step-by-step guidance'
+    description: 'Real-time visual cues guide users through any workflow, step by step.'
   },
   {
-    name: 'User Approval',
-    value: 'user-approval',
-    icon: (
-      <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
-    ),
-    description: 'Smart action recommendations with one-click approval'
-  },
-  {
-    name: 'Automated',
-    value: 'automated',
+    name: 'Autopilot',
+    value: 'autopilot',
     icon: (
       <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
       </svg>
     ),
-    description: 'Intelligent task automation and workflow orchestration'
+    description: 'Autopilot navigates, clicks, and completes workflows intelligently, from start to finish.'
   }
 ]
 
 export default function SolutionInAction() {
-  const [activeTab, setActiveTab] = React.useState('visual-guidance')
+  const [activeTab, setActiveTab] = React.useState('guide')
   const tabRefs = React.useRef<(HTMLButtonElement | null)[]>([])
   const [underlineStyle, setUnderlineStyle] = React.useState({ left: 0, width: 0 })
 

@@ -40,7 +40,7 @@ export default function BusinessROI() {
           Activate Users. Transform Your Product.
           </h2>
           <p className={`text-lg sm:text-xl max-w-3xl mx-auto leading-relaxed transition-colors duration-300 ${textColor} opacity-70`}>
-            See the measurable impact SAIL delivers across your organization, from cost savings to user engagement and product insights.
+          Drive adoption by solving user problems in real-time while uncovering the insights that build a better product.
           </p>
         </div>
 
@@ -61,9 +61,7 @@ export default function BusinessROI() {
             </CardHeader>
             <CardContent className="text-center">
               <p className={`leading-relaxed transition-colors duration-300 ${textColor} opacity-70`}>
-                Empower users to find answers and complete tasks on their own. By resolving queries in-app before they become tickets, our partners see an average of{" "}
-                <span className="font-semibold text-primary">70% fewer support requests</span>{" "}
-                and a dramatic increase in team efficiency.
+                Empower users to find answers and complete tasks on their own. Solving queries in-app before they become tickets.
               </p>
             </CardContent>
           </Card>
@@ -83,9 +81,7 @@ export default function BusinessROI() {
             </CardHeader>
             <CardContent className="text-center">
               <p className={`leading-relaxed transition-colors duration-300 ${textColor} opacity-70`}>
-                Turn confusing first-run experiences into guided "Aha!" moments. SAIL helps new users master your product's core workflow in minutes, not hours, leading to{" "}
-                <span className="font-semibold text-primary">2x faster activation rates</span>{" "}
-                and much higher long-term retention.
+              Eliminate the learning curve and drastically reduce time-to-value. Convert new sign-ups into deeply engaged, paying customers faster than ever before.
               </p>
             </CardContent>
           </Card>
@@ -100,14 +96,12 @@ export default function BusinessROI() {
                 </svg>
               </div>
               <CardTitle className={`text-xl lg:text-2xl font-bold transition-colors duration-300 ${textColor}`}>
-                Uncover Actionable Insights
+                Get Actionable Insights
               </CardTitle>
             </CardHeader>
             <CardContent className="text-center">
               <p className={`leading-relaxed transition-colors duration-300 ${textColor} opacity-70`}>
-                Go beyond simple analytics. SAIL's intelligence layer identifies exactly where users get stuck and what they intend to do. This provides a continuous stream of{" "}
-                <span className="font-semibold text-primary">actionable insights</span>{" "}
-                to help you build a better product.
+                Understand exactly where users get stuck and what they intend to do. Get actionable insights to help you build a better product.
               </p>
             </CardContent>
           </Card>
