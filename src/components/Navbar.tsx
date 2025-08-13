@@ -36,7 +36,7 @@ export default function Navbar() {
           {/* Navigation Links - Hidden on mobile */}
           <div className="hidden md:flex items-center space-x-8">
             <a
-              href="#product"
+              href="/#features"
               className="text-foreground/80 hover:text-foreground transition-colors duration-200 font-medium"
             >
               Product

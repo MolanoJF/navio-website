@@ -63,13 +63,16 @@ export default function DashboardPage() {
         activeModule={activeModule}
       />
       <SidebarInset>
-        <SiteHeader />
-        <div className="flex flex-1 flex-col">
-          <div className="flex flex-1 flex-col gap-2">
-            <div className="flex-1 p-4">
+        <div className="flex h-[calc(100vh-var(--header-height))] flex-col">
+          {/* Fixed Header */}
+          <SiteHeader />
+          
+          {/* Scrollable Main Content */}
+          <main className="flex-1 overflow-hidden">
+            <div className="h-full overflow-y-auto p-4 lg:p-6">
               {renderModule()}
             </div>
-          </div>
+          </main>
         </div>
       </SidebarInset>
     </SidebarProvider>

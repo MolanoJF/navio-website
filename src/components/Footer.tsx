@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
+import Link from "next/link"
 
 export default function Footer() {
   return (
@@ -15,121 +16,11 @@ export default function Footer() {
               <h3 className="text-2xl font-bold text-foreground tracking-tight mb-4">
                 SAIL
               </h3>
-              <p className="text-foreground/70 text-base leading-relaxed max-w-md">
+              <p className="text-foreground/70 text-base leading-relaxed max-w-md mb-6">
                 The intelligent layer that understands your app, enabling users to get guidance, take action, or automate entire workflows—right inside your product.
               </p>
-            </div>
-            
-            {/* Newsletter Signup */}
-            <div className="space-y-4">
-              <h4 className="text-lg font-semibold text-foreground">
-                Stay updated with SAIL
-              </h4>
-              <div className="flex flex-col sm:flex-row gap-3 max-w-md">
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  className="flex-1 px-4 py-2 rounded-md border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors"
-                />
-                <Button size="sm" className="shrink-0">
-                  Subscribe
-                </Button>
-              </div>
-            </div>
-          </div>
-
-          {/* Product Links */}
-          <div className="space-y-4">
-            <h4 className="text-lg font-semibold text-foreground">Product</h4>
-            <ul className="space-y-3">
-              <li>
-                <a 
-                  href="#features" 
-                  className="text-foreground/70 hover:text-foreground transition-colors duration-200"
-                >
-                  Features
-                </a>
-              </li>
-              <li>
-                <a 
-                  href="#integrations" 
-                  className="text-foreground/70 hover:text-foreground transition-colors duration-200"
-                >
-                  Integrations
-                </a>
-              </li>
-              <li>
-                <a 
-                  href="#pricing" 
-                  className="text-foreground/70 hover:text-foreground transition-colors duration-200"
-                >
-                  Pricing
-                </a>
-              </li>
-              <li>
-                <a 
-                  href="#roadmap" 
-                  className="text-foreground/70 hover:text-foreground transition-colors duration-200"
-                >
-                  Roadmap
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* Company Links */}
-          <div className="space-y-4">
-            <h4 className="text-lg font-semibold text-foreground">Company</h4>
-            <ul className="space-y-3">
-              <li>
-                <a 
-                  href="#about" 
-                  className="text-foreground/70 hover:text-foreground transition-colors duration-200"
-                >
-                  About
-                </a>
-              </li>
-              <li>
-                <a 
-                  href="#blog" 
-                  className="text-foreground/70 hover:text-foreground transition-colors duration-200"
-                >
-                  Blog
-                </a>
-              </li>
-              <li>
-                <a 
-                  href="#careers" 
-                  className="text-foreground/70 hover:text-foreground transition-colors duration-200"
-                >
-                  Careers
-                </a>
-              </li>
-              <li>
-                <a 
-                  href="#contact" 
-                  className="text-foreground/70 hover:text-foreground transition-colors duration-200"
-                >
-                  Contact
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        {/* Bottom Section */}
-        <div className="mt-16 pt-8">
-          <Separator className="mb-8" />
-          
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            {/* Copyright */}
-            <div className="text-foreground/60 text-sm">
-              © 2024 SAIL. All rights reserved.
-            </div>
-
-            {/* Social Links & Legal */}
-            <div className="flex items-center gap-6">
-              {/* Social Media */}
+              
+              {/* Social Media Links - Moved here under brand description */}
               <div className="flex items-center gap-4">
                 <a 
                   href="#twitter" 
@@ -159,28 +50,96 @@ export default function Footer() {
                   </svg>
                 </a>
               </div>
+            </div>
+          </div>
 
-              {/* Legal Links */}
-              <div className="flex items-center gap-4 text-sm">
-                <a 
-                  href="#privacy" 
-                  className="text-foreground/60 hover:text-foreground transition-colors duration-200"
+          {/* Product Links */}
+          <div className="space-y-4">
+            <h4 className="text-lg font-semibold text-foreground">Product</h4>
+            <ul className="space-y-3">
+              <li>
+                <Link 
+                  href="/#features" 
+                  className="text-foreground/70 hover:text-foreground transition-colors duration-200"
                 >
-                  Privacy
-                </a>
-                <a 
-                  href="#terms" 
-                  className="text-foreground/60 hover:text-foreground transition-colors duration-200"
+                  Features
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="/pricing" 
+                  className="text-foreground/70 hover:text-foreground transition-colors duration-200"
                 >
-                  Terms
-                </a>
+                  Pricing
+                </Link>
+              </li>
+              <li>
                 <a 
-                  href="#cookies" 
-                  className="text-foreground/60 hover:text-foreground transition-colors duration-200"
+                  href="#Resources" 
+                  className="text-foreground/70 hover:text-foreground transition-colors duration-200"
                 >
-                  Cookies
+                  Resources
                 </a>
-              </div>
+              </li>
+            </ul>
+          </div>
+
+          {/* Company Links */}
+          <div className="space-y-4">
+            <h4 className="text-lg font-semibold text-foreground">Company</h4>
+            <ul className="space-y-3">
+              <li>
+                <Link 
+                  href="/security" 
+                  className="text-foreground/70 hover:text-foreground transition-colors duration-200"
+                >
+                  Security
+                </Link>
+              </li>
+              <li>
+                <a 
+                  href="#careers" 
+                  className="text-foreground/70 hover:text-foreground transition-colors duration-200"
+                >
+                  Careers
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="#contact" 
+                  className="text-foreground/70 hover:text-foreground transition-colors duration-200"
+                >
+                  Contact
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Bottom Section */}
+        <div className="mt-6 pt-6">
+          <Separator className="mb-6" />
+          
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            {/* Copyright */}
+            <div className="text-foreground/60 text-sm">
+              © 2024 SAIL. All rights reserved.
+            </div>
+
+            {/* Legal Links Only - Social links moved to brand section */}
+            <div className="flex items-center gap-4 text-sm">
+              <Link 
+                href="/privacy" 
+                className="text-foreground/60 hover:text-foreground transition-colors duration-200"
+              >
+                Privacy Policy
+              </Link>
+              <Link 
+                href="/terms" 
+                className="text-foreground/60 hover:text-foreground transition-colors duration-200"
+              >
+                Terms of Service
+              </Link>
             </div>
           </div>
         </div>

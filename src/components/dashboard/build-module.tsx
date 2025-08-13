@@ -142,7 +142,7 @@ export function BuildModule({ activeSubModule = "agent" }: BuildModuleProps) {
 
 function AgentConfigView() {
   return (
-    <div className="flex flex-col gap-6 p-4 lg:p-6">
+    <div className="flex flex-col gap-6">
       {/* Header */}
       <div>
         <h2 className="text-2xl font-bold tracking-tight">Agent Configuration</h2>
@@ -310,7 +310,7 @@ function AgentConfigView() {
 
 function KnowledgeBaseView() {
   return (
-    <div className="flex flex-col gap-6 p-4 lg:p-6">
+    <div className="flex flex-col gap-6">
       {/* Header */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
@@ -440,7 +440,7 @@ function KnowledgeBaseView() {
 
 function WorkflowsView() {
   return (
-    <div className="flex flex-col gap-6 p-4 lg:p-6">
+    <div className="flex flex-col gap-6">
       {/* Header */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>

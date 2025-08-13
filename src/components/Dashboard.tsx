@@ -12,6 +12,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Separator } from "@/components/ui/separator"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
 
 // Mock data for the dashboard
 const chartData = [
@@ -122,6 +123,7 @@ const tableData = [
 ]
 
 export default function Dashboard() {
+  const [activeTab, setActiveTab] = React.useState("analytics")
   const [timeRange, setTimeRange] = React.useState("90d")
   const [selectedRows, setSelectedRows] = React.useState<Set<number>>(new Set())
   const [currentPage, setCurrentPage] = React.useState(1)
@@ -172,397 +174,469 @@ export default function Dashboard() {
           <p className="text-muted-foreground text-lg">Get a real-time view of how users interact with your software</p>
         </div>
         
-        <div className="bg-card rounded-lg border shadow-lg">
-          <div className="flex">
-            {/* Sidebar */}
-            <div className="w-72 bg-card border-r min-h-screen p-4">
-              <div className="flex items-center gap-2 mb-6">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
+          {/* Left Column - New Tab Navigation */}
+          <Card className="h-fit">
+            <CardHeader>
+              <div className="flex items-center gap-2">
                 <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
                   <IconInnerShadowTop className="w-5 h-5 text-primary-foreground" />
                 </div>
-                <span className="text-lg font-semibold">Acme Inc.</span>
+                <span className="text-lg font-semibold">SAIL</span>
               </div>
-              
-              <Button className="w-full mb-6 bg-primary text-primary-foreground hover:bg-primary/90">
-                <IconDashboard className="w-4 h-4 mr-2" />
-                Quick Create
-              </Button>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button 
+                    variant={activeTab === "analytics" ? "default" : "ghost"}
+                    className="w-full justify-start h-12 text-left"
+                    onClick={() => setActiveTab("analytics")}
+                  >
+                    <IconChartBar className="w-4 h-4 mr-3" />
+                    <div className="text-left">
+                      <div className="font-medium">Analytics</div>
+                    </div>
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent side="right" className="max-w-xs">
+                  <p>Get a real-time view of how users interact with your software.</p>
+                </TooltipContent>
+              </Tooltip>
 
-              <nav className="space-y-2 mb-6">
-                <Button variant="ghost" className="w-full justify-start">
-                  <IconDashboard className="w-4 h-4 mr-2" />
-                  Dashboard
-                </Button>
-                <Button variant="ghost" className="w-full justify-start">
-                  <IconListDetails className="w-4 h-4 mr-2" />
-                  Lifecycle
-                </Button>
-                <Button variant="ghost" className="w-full justify-start">
-                  <IconChartBar className="w-4 h-4 mr-2" />
-                  Analytics
-                </Button>
-                <Button variant="ghost" className="w-full justify-start">
-                  <IconFolder className="w-4 h-4 mr-2" />
-                  Projects
-                </Button>
-                <Button variant="ghost" className="w-full justify-start">
-                  <IconUsers className="w-4 h-4 mr-2" />
-                  Team
-                </Button>
-              </nav>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button 
+                    variant={activeTab === "insights" ? "default" : "ghost"}
+                    className="w-full justify-start h-12 text-left"
+                    onClick={() => setActiveTab("insights")}
+                  >
+                    <IconInnerShadowTop className="w-4 h-4 mr-3" />
+                    <div className="text-left">
+                      <div className="font-medium">Insights</div>
+                    </div>
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent side="right" className="max-w-xs">
+                  <p>Get actionable feedback, Topics and bottlenecks</p>
+                </TooltipContent>
+              </Tooltip>
 
-              <Separator className="my-6" />
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button 
+                    variant={activeTab === "build" ? "default" : "ghost"}
+                    className="w-full justify-start h-12 text-left"
+                    onClick={() => setActiveTab("build")}
+                  >
+                    <IconFileAi className="w-4 h-4 mr-3" />
+                    <div className="text-left">
+                      <div className="font-medium">Build</div>
+                    </div>
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent side="right" className="max-w-xs">
+                  <p>Customize agent behaviors, define goals, Knowledge base and workflows</p>
+                </TooltipContent>
+              </Tooltip>
+            </CardContent>
+          </Card>
 
-              <div className="space-y-2 mb-6">
-                <h3 className="text-sm font-medium text-muted-foreground mb-2">Documents</h3>
-                <Button variant="ghost" className="w-full justify-start">
-                  <IconDatabase className="w-4 h-4 mr-2" />
-                  Data Library
-                </Button>
-                <Button variant="ghost" className="w-full justify-start">
-                  <IconReport className="w-4 h-4 mr-2" />
-                  Reports
-                </Button>
-                <Button variant="ghost" className="w-full justify-start">
-                  <IconFileWord className="w-4 h-4 mr-2" />
-                  Word Assistant
-                </Button>
-                <Button variant="ghost" className="w-full justify-start">
-                  <IconFileAi className="w-4 h-4 mr-2" />
-                  More...
-                </Button>
-              </div>
-
-              <div className="mt-auto space-y-2">
-                <Button variant="ghost" className="w-full justify-start">
-                  <IconSettings className="w-4 h-4 mr-2" />
-                  Settings
-                </Button>
-                <Button variant="ghost" className="w-full justify-start">
-                  <IconHelp className="w-4 h-4 mr-2" />
-                  Get Help
-                </Button>
-                <Button variant="ghost" className="w-full justify-start">
-                  <IconSearch className="w-4 h-4 mr-2" />
-                  Search
-                </Button>
-              </div>
-
-              <div className="mt-6 p-3 bg-muted rounded-lg">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-primary-foreground text-sm font-medium">
-                    S
+          {/* Main Dashboard Content */}
+          <div className="lg:col-span-4">
+            <div className="bg-card rounded-lg border shadow-lg">
+              <div className="flex">
+                {/* Sidebar */}
+                <div className="w-72 bg-card border-r min-h-screen p-4">
+                  <div className="flex items-center gap-2 mb-6">
+                    <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+                      <IconInnerShadowTop className="w-5 h-5 text-primary-foreground" />
+                    </div>
+                    <span className="text-lg font-semibold">Acme Inc.</span>
                   </div>
-                  <div>
-                    <p className="text-sm font-medium">shadcn</p>
-                    <p className="text-xs text-muted-foreground">m@example.com</p>
+                  
+                  <Button className="w-full mb-6 bg-primary text-primary-foreground hover:bg-primary/90">
+                    <IconDashboard className="w-4 h-4 mr-2" />
+                    Quick Create
+                  </Button>
+
+                  <nav className="space-y-2 mb-6">
+                    <Button variant="ghost" className="w-full justify-start">
+                      <IconDashboard className="w-4 h-4 mr-2" />
+                      Dashboard
+                    </Button>
+                    <Button variant="ghost" className="w-full justify-start">
+                      <IconListDetails className="w-4 h-4 mr-2" />
+                      Lifecycle
+                    </Button>
+                    <Button variant="ghost" className="w-full justify-start">
+                      <IconChartBar className="w-4 h-4 mr-2" />
+                      Analytics
+                    </Button>
+                    <Button variant="ghost" className="w-full justify-start">
+                      <IconFolder className="w-4 h-4 mr-2" />
+                      Projects
+                    </Button>
+                    <Button variant="ghost" className="w-full justify-start">
+                      <IconUsers className="w-4 h-4 mr-2" />
+                      Team
+                    </Button>
+                  </nav>
+
+                  <Separator className="my-6" />
+
+                  <div className="space-y-2 mb-6">
+                    <h3 className="text-sm font-medium text-muted-foreground mb-2">Documents</h3>
+                    <Button variant="ghost" className="w-full justify-start">
+                      <IconDatabase className="w-4 h-4 mr-2" />
+                      Data Library
+                    </Button>
+                    <Button variant="ghost" className="w-full justify-start">
+                      <IconReport className="w-4 h-4 mr-2" />
+                      Reports
+                    </Button>
+                    <Button variant="ghost" className="w-full justify-start">
+                      <IconFileWord className="w-4 h-4 mr-2" />
+                      Word Assistant
+                    </Button>
+                    <Button variant="ghost" className="w-full justify-start">
+                      <IconFileAi className="w-4 h-4 mr-2" />
+                      More...
+                    </Button>
+                  </div>
+
+                  <div className="mt-auto space-y-2">
+                    <Button variant="ghost" className="w-full justify-start">
+                      <IconSettings className="w-4 h-4 mr-2" />
+                      Settings
+                    </Button>
+                    <Button variant="ghost" className="w-full justify-start">
+                      <IconHelp className="w-4 h-4 mr-2" />
+                      Get Help
+                    </Button>
+                    <Button variant="ghost" className="w-full justify-start">
+                      <IconSearch className="w-4 h-4 mr-2" />
+                      Search
+                    </Button>
+                  </div>
+
+                  <div className="mt-6 p-3 bg-muted rounded-lg">
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-primary-foreground text-sm font-medium">
+                        S
+                      </div>
+                      <div>
+                        <p className="text-sm font-medium">shadcn</p>
+                        <p className="text-xs text-muted-foreground">m@example.com</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
 
-            {/* Main Content */}
-            <div className="flex-1 p-6">
-              <div className="mb-6">
-                <h1 className="text-2xl font-bold mb-2">A dashboard with sidebar, charts and data table</h1>
-                <p className="text-muted-foreground">Interactive dashboard with real-time data visualization</p>
-              </div>
-
-              {/* Section Cards */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-                <Card>
-                  <CardHeader>
-                    <CardDescription>Total Revenue</CardDescription>
-                    <CardTitle className="text-2xl font-semibold">$1,250.00</CardTitle>
-                    <CardAction>
-                      <Badge variant="outline" className="text-green-600">
-                        +12.5%
-                      </Badge>
-                    </CardAction>
-                  </CardHeader>
-                  <CardFooter className="flex-col items-start gap-1.5 text-sm">
-                    <div className="flex gap-2 font-medium">
-                      Trending up this month
-                    </div>
-                    <div className="text-muted-foreground">
-                      Visitors for the last 6 months
-                    </div>
-                  </CardFooter>
-                </Card>
-
-                <Card>
-                  <CardHeader>
-                    <CardDescription>New Customers</CardDescription>
-                    <CardTitle className="text-2xl font-semibold">1,234</CardTitle>
-                    <CardAction>
-                      <Badge variant="outline" className="text-red-600">
-                        -20%
-                      </Badge>
-                    </CardAction>
-                  </CardHeader>
-                  <CardFooter className="flex-col items-start gap-1.5 text-sm">
-                    <div className="flex gap-2 font-medium">
-                      Down 20% this period
-                    </div>
-                    <div className="text-muted-foreground">
-                      Acquisition needs attention
-                    </div>
-                  </CardFooter>
-                </Card>
-
-                <Card>
-                  <CardHeader>
-                    <CardDescription>Active Accounts</CardDescription>
-                    <CardTitle className="text-2xl font-semibold">45,678</CardTitle>
-                    <CardAction>
-                      <Badge variant="outline" className="text-green-600">
-                        +12.5%
-                      </Badge>
-                    </CardAction>
-                  </CardHeader>
-                  <CardFooter className="flex-col items-start gap-1.5 text-sm">
-                    <div className="flex gap-2 font-medium">
-                      Strong user retention
-                    </div>
-                    <div className="text-muted-foreground">Engagement exceed targets</div>
-                  </CardFooter>
-                </Card>
-
-                <Card>
-                  <CardHeader>
-                    <CardDescription>Growth Rate</CardDescription>
-                    <CardTitle className="text-2xl font-semibold">4.5%</CardTitle>
-                    <CardAction>
-                      <Badge variant="outline" className="text-green-600">
-                        +4.5%
-                      </Badge>
-                    </CardAction>
-                  </CardHeader>
-                  <CardFooter className="flex-col items-start gap-1.5 text-sm">
-                    <div className="flex gap-2 font-medium">
-                      Steady performance increase
-                    </div>
-                    <div className="text-muted-foreground">Meets growth projections</div>
-                  </CardFooter>
-                </Card>
-              </div>
-
-              {/* Chart Section */}
-              <Card className="mb-6">
-                <CardHeader>
-                  <CardTitle>Total Visitors</CardTitle>
-                  <CardDescription>Total for the last 3 months</CardDescription>
-                  <CardAction>
-                    <div className="flex gap-2">
-                      <Button
-                        variant={timeRange === "90d" ? "default" : "outline"}
-                        size="sm"
-                        onClick={() => setTimeRange("90d")}
-                      >
-                        Last 3 months
-                      </Button>
-                      <Button
-                        variant={timeRange === "30d" ? "default" : "outline"}
-                        size="sm"
-                        onClick={() => setTimeRange("30d")}
-                      >
-                        Last 30 days
-                      </Button>
-                      <Button
-                        variant={timeRange === "7d" ? "default" : "outline"}
-                        size="sm"
-                        onClick={() => setTimeRange("7d")}
-                      >
-                        Last 7 days
-                      </Button>
-                    </div>
-                  </CardAction>
-                </CardHeader>
-                <CardContent>
-                  <div className="h-64 w-full bg-muted rounded-lg flex items-center justify-center">
-                    <div className="text-center">
-                      <p className="text-muted-foreground mb-2">Interactive Chart Area</p>
-                      <p className="text-sm text-muted-foreground">
-                        {filteredData.length} data points for {timeRange === "90d" ? "90 days" : timeRange === "30d" ? "30 days" : "7 days"}
-                      </p>
-                    </div>
+                {/* Main Content */}
+                <div className="flex-1 p-6">
+                  <div className="mb-6">
+                    <h1 className="text-2xl font-bold mb-2">A dashboard with sidebar, charts and data table</h1>
+                    <p className="text-muted-foreground">Interactive dashboard with real-time data visualization</p>
                   </div>
-                </CardContent>
-              </Card>
 
-              {/* Data Table */}
-              <Card>
-                <CardHeader>
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <CardTitle>Document Sections</CardTitle>
-                      <CardDescription>Manage and track document progress</CardDescription>
-                    </div>
-                    <div className="flex gap-2">
-                      <Button variant="outline" size="sm">
-                        Customize Columns
-                      </Button>
-                      <Button variant="outline" size="sm">
-                        + Add Section
-                      </Button>
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <Tabs defaultValue="outline" className="w-full">
-                    <TabsList className="grid w-full grid-cols-4">
-                      <TabsTrigger value="outline">Outline</TabsTrigger>
-                      <TabsTrigger value="past-performance">
-                        Past Performance <Badge variant="secondary">3</Badge>
-                      </TabsTrigger>
-                      <TabsTrigger value="key-personnel">
-                        Key Personnel <Badge variant="secondary">2</Badge>
-                      </TabsTrigger>
-                      <TabsTrigger value="focus-documents">Focus Documents</TabsTrigger>
-                    </TabsList>
-
-                    <TabsContent value="outline" className="mt-4">
-                      <div className="rounded-md border">
-                        <Table>
-                          <TableHeader>
-                            <TableRow>
-                              <TableHead className="w-12">
-                                <Checkbox
-                                  checked={selectedRows.size === currentData.length}
-                                  onCheckedChange={handleSelectAll}
-                                />
-                              </TableHead>
-                              <TableHead>Header</TableHead>
-                              <TableHead>Section Type</TableHead>
-                              <TableHead>Status</TableHead>
-                              <TableHead className="text-right">Target</TableHead>
-                              <TableHead className="text-right">Limit</TableHead>
-                              <TableHead>Reviewer</TableHead>
-                            </TableRow>
-                          </TableHeader>
-                          <TableBody>
-                            {currentData.map((item) => (
-                              <TableRow key={item.id}>
-                                <TableCell>
-                                  <Checkbox
-                                    checked={selectedRows.has(item.id)}
-                                    onCheckedChange={() => handleRowSelection(item.id)}
-                                  />
-                                </TableCell>
-                                <TableCell className="font-medium">{item.header}</TableCell>
-                                <TableCell>
-                                  <Badge variant="outline">{item.type}</Badge>
-                                </TableCell>
-                                <TableCell>
-                                  <Badge variant={item.status === "Done" ? "default" : "secondary"}>
-                                    {item.status}
-                                  </Badge>
-                                </TableCell>
-                                <TableCell className="text-right">{item.target}</TableCell>
-                                <TableCell className="text-right">{item.limit}</TableCell>
-                                <TableCell>
-                                  {item.reviewer === "Assign reviewer" ? (
-                                    <Select>
-                                      <SelectTrigger className="w-40">
-                                        <SelectValue placeholder="Assign reviewer" />
-                                      </SelectTrigger>
-                                      <SelectContent>
-                                        <SelectItem value="Eddie Lake">Eddie Lake</SelectItem>
-                                        <SelectItem value="Jamik Tashpulatov">Jamik Tashpulatov</SelectItem>
-                                      </SelectContent>
-                                    </Select>
-                                  ) : (
-                                    item.reviewer
-                                  )}
-                                </TableCell>
-                              </TableRow>
-                            ))}
-                          </TableBody>
-                        </Table>
-                      </div>
-
-                      {/* Pagination */}
-                      <div className="flex items-center justify-between mt-4">
-                        <div className="text-sm text-muted-foreground">
-                          {selectedRows.size} of {tableData.length} row(s) selected.
+                  {/* Section Cards */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                    <Card>
+                      <CardHeader>
+                        <CardDescription>Total Revenue</CardDescription>
+                        <CardTitle className="text-2xl font-semibold">$1,250.00</CardTitle>
+                        <CardAction>
+                          <Badge variant="outline" className="text-green-600">
+                            +12.5%
+                          </Badge>
+                        </CardAction>
+                      </CardHeader>
+                      <CardFooter className="flex-col items-start gap-1.5 text-sm">
+                        <div className="flex gap-2 font-medium">
+                          Trending up this month
                         </div>
-                        <div className="flex items-center gap-4">
-                          <div className="flex items-center gap-2">
-                            <Label htmlFor="rows-per-page" className="text-sm">
-                              Rows per page
-                            </Label>
-                            <Select value={rowsPerPage.toString()} onValueChange={(value) => setRowsPerPage(Number(value))}>
-                              <SelectTrigger className="w-20">
-                                <SelectValue />
-                              </SelectTrigger>
-                              <SelectContent>
-                                <SelectItem value="10">10</SelectItem>
-                                <SelectItem value="20">20</SelectItem>
-                                <SelectItem value="50">50</SelectItem>
-                              </SelectContent>
-                            </Select>
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              onClick={() => setCurrentPage(1)}
-                              disabled={currentPage === 1}
-                            >
-                              First
-                            </Button>
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              onClick={() => setCurrentPage(currentPage - 1)}
-                              disabled={currentPage === 1}
-                            >
-                              Previous
-                            </Button>
-                            <span className="text-sm">
-                              Page {currentPage} of {totalPages}
-                            </span>
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              onClick={() => setCurrentPage(currentPage + 1)}
-                              disabled={currentPage === totalPages}
-                            >
-                              Next
-                            </Button>
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              onClick={() => setCurrentPage(totalPages)}
-                              disabled={currentPage === totalPages}
-                            >
-                              Last
-                            </Button>
-                          </div>
+                        <div className="text-muted-foreground">
+                          Visitors for the last 6 months
+                        </div>
+                      </CardFooter>
+                    </Card>
+
+                    <Card>
+                      <CardHeader>
+                        <CardDescription>New Customers</CardDescription>
+                        <CardTitle className="text-2xl font-semibold">1,234</CardTitle>
+                        <CardAction>
+                          <Badge variant="outline" className="text-red-600">
+                            -20%
+                          </Badge>
+                        </CardAction>
+                      </CardHeader>
+                      <CardFooter className="flex-col items-start gap-1.5 text-sm">
+                        <div className="flex gap-2 font-medium">
+                          Down 20% this period
+                        </div>
+                        <div className="text-muted-foreground">
+                          Acquisition needs attention
+                        </div>
+                      </CardFooter>
+                    </Card>
+
+                    <Card>
+                      <CardHeader>
+                        <CardDescription>Active Accounts</CardDescription>
+                        <CardTitle className="text-2xl font-semibold">45,678</CardTitle>
+                        <CardAction>
+                          <Badge variant="outline" className="text-green-600">
+                            +12.5%
+                          </Badge>
+                        </CardAction>
+                      </CardHeader>
+                      <CardFooter className="flex-col items-start gap-1.5 text-sm">
+                        <div className="flex gap-2 font-medium">
+                          Strong user retention
+                        </div>
+                        <div className="text-muted-foreground">Engagement exceed targets</div>
+                      </CardFooter>
+                    </Card>
+
+                    <Card>
+                      <CardHeader>
+                        <CardDescription>Growth Rate</CardDescription>
+                        <CardTitle className="text-2xl font-semibold">4.5%</CardTitle>
+                        <CardAction>
+                          <Badge variant="outline" className="text-green-600">
+                            +4.5%
+                          </Badge>
+                        </CardAction>
+                      </CardHeader>
+                      <CardFooter className="flex-col items-start gap-1.5 text-sm">
+                        <div className="flex gap-2 font-medium">
+                          Steady performance increase
+                        </div>
+                        <div className="text-muted-foreground">Meets growth projections</div>
+                      </CardFooter>
+                    </Card>
+                  </div>
+
+                  {/* Chart Section */}
+                  <Card className="mb-6">
+                    <CardHeader>
+                      <CardTitle>Total Visitors</CardTitle>
+                      <CardDescription>Total for the last 3 months</CardDescription>
+                      <CardAction>
+                        <div className="flex gap-2">
+                          <Button
+                            variant={timeRange === "90d" ? "default" : "outline"}
+                            size="sm"
+                            onClick={() => setTimeRange("90d")}
+                          >
+                            Last 3 months
+                          </Button>
+                          <Button
+                            variant={timeRange === "30d" ? "default" : "outline"}
+                            size="sm"
+                            onClick={() => setTimeRange("30d")}
+                          >
+                            Last 30 days
+                          </Button>
+                          <Button
+                            variant={timeRange === "7d" ? "default" : "outline"}
+                            size="sm"
+                            onClick={() => setTimeRange("7d")}
+                          >
+                            Last 7 days
+                          </Button>
+                        </div>
+                      </CardAction>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="h-64 w-full bg-muted rounded-lg flex items-center justify-center">
+                        <div className="text-center">
+                          <p className="text-muted-foreground mb-2">Interactive Chart Area</p>
+                          <p className="text-sm text-muted-foreground">
+                            {filteredData.length} data points for {timeRange === "90d" ? "90 days" : timeRange === "30d" ? "30 days" : "7 days"}
+                          </p>
                         </div>
                       </div>
-                    </TabsContent>
+                    </CardContent>
+                  </Card>
 
-                    <TabsContent value="past-performance" className="mt-4">
-                      <div className="h-64 w-full bg-muted rounded-lg flex items-center justify-center">
-                        <p className="text-muted-foreground">Past Performance Content</p>
+                  {/* Data Table */}
+                  <Card>
+                    <CardHeader>
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <CardTitle>Document Sections</CardTitle>
+                          <CardDescription>Manage and track document progress</CardDescription>
+                        </div>
+                        <div className="flex gap-2">
+                          <Button variant="outline" size="sm">
+                            Customize Columns
+                          </Button>
+                          <Button variant="outline" size="sm">
+                            + Add Section
+                          </Button>
+                        </div>
                       </div>
-                    </TabsContent>
+                    </CardHeader>
+                    <CardContent>
+                      <Tabs defaultValue="outline" className="w-full">
+                        <TabsList className="grid w-full grid-cols-4">
+                          <TabsTrigger value="outline">Outline</TabsTrigger>
+                          <TabsTrigger value="past-performance">
+                            Past Performance <Badge variant="secondary">3</Badge>
+                          </TabsTrigger>
+                          <TabsTrigger value="key-personnel">
+                            Key Personnel <Badge variant="secondary">2</Badge>
+                          </TabsTrigger>
+                          <TabsTrigger value="focus-documents">Focus Documents</TabsTrigger>
+                        </TabsList>
 
-                    <TabsContent value="key-personnel" className="mt-4">
-                      <div className="h-64 w-full bg-muted rounded-lg flex items-center justify-center">
-                        <p className="text-muted-foreground">Key Personnel Content</p>
-                      </div>
-                    </TabsContent>
+                        <TabsContent value="outline" className="mt-4">
+                          <div className="rounded-md border">
+                            <Table>
+                              <TableHeader>
+                                <TableRow>
+                                  <TableHead className="w-12">
+                                    <Checkbox
+                                      checked={selectedRows.size === currentData.length}
+                                      onCheckedChange={handleSelectAll}
+                                    />
+                                  </TableHead>
+                                  <TableHead>Header</TableHead>
+                                  <TableHead>Section Type</TableHead>
+                                  <TableHead>Status</TableHead>
+                                  <TableHead className="text-right">Target</TableHead>
+                                  <TableHead className="text-right">Limit</TableHead>
+                                  <TableHead>Reviewer</TableHead>
+                                </TableRow>
+                              </TableHeader>
+                              <TableBody>
+                                {currentData.map((item) => (
+                                  <TableRow key={item.id}>
+                                    <TableCell>
+                                      <Checkbox
+                                        checked={selectedRows.has(item.id)}
+                                        onCheckedChange={() => handleRowSelection(item.id)}
+                                      />
+                                    </TableCell>
+                                    <TableCell className="font-medium">{item.header}</TableCell>
+                                    <TableCell>
+                                      <Badge variant="outline">{item.type}</Badge>
+                                    </TableCell>
+                                    <TableCell>
+                                      <Badge variant={item.status === "Done" ? "default" : "secondary"}>
+                                        {item.status}
+                                      </Badge>
+                                    </TableCell>
+                                    <TableCell className="text-right">{item.target}</TableCell>
+                                    <TableCell className="text-right">{item.limit}</TableCell>
+                                    <TableCell>
+                                      {item.reviewer === "Assign reviewer" ? (
+                                        <Select>
+                                          <SelectTrigger className="w-40">
+                                            <SelectValue placeholder="Assign reviewer" />
+                                          </SelectTrigger>
+                                          <SelectContent>
+                                            <SelectItem value="Eddie Lake">Eddie Lake</SelectItem>
+                                            <SelectItem value="Jamik Tashpulatov">Jamik Tashpulatov</SelectItem>
+                                          </SelectContent>
+                                        </Select>
+                                      ) : (
+                                        item.reviewer
+                                      )}
+                                    </TableCell>
+                                  </TableRow>
+                                ))}
+                              </TableBody>
+                            </Table>
+                          </div>
 
-                    <TabsContent value="focus-documents" className="mt-4">
-                      <div className="h-64 w-full bg-muted rounded-lg flex items-center justify-center">
-                        <p className="text-muted-foreground">Focus Documents Content</p>
-                      </div>
-                    </TabsContent>
-                  </Tabs>
-                </CardContent>
-              </Card>
+                          {/* Pagination */}
+                          <div className="flex items-center justify-between mt-4">
+                            <div className="text-sm text-muted-foreground">
+                              {selectedRows.size} of {tableData.length} row(s) selected.
+                            </div>
+                            <div className="flex items-center gap-4">
+                              <div className="flex items-center gap-2">
+                                <Label htmlFor="rows-per-page" className="text-sm">
+                                  Rows per page
+                                </Label>
+                                <Select value={rowsPerPage.toString()} onValueChange={(value) => setRowsPerPage(Number(value))}>
+                                  <SelectTrigger className="w-20">
+                                    <SelectValue />
+                                  </SelectTrigger>
+                                  <SelectContent>
+                                    <SelectItem value="10">10</SelectItem>
+                                    <SelectItem value="20">20</SelectItem>
+                                    <SelectItem value="50">50</SelectItem>
+                                  </SelectContent>
+                                </Select>
+                              </div>
+                              <div className="flex items-center gap-2">
+                                <Button
+                                  variant="outline"
+                                  size="sm"
+                                  onClick={() => setCurrentPage(1)}
+                                  disabled={currentPage === 1}
+                                >
+                                  First
+                                </Button>
+                                <Button
+                                  variant="outline"
+                                  size="sm"
+                                  onClick={() => setCurrentPage(currentPage - 1)}
+                                  disabled={currentPage === 1}
+                                >
+                                  Previous
+                                </Button>
+                                <span className="text-sm">
+                                  Page {currentPage} of {totalPages}
+                                </span>
+                                <Button
+                                  variant="outline"
+                                  size="sm"
+                                  onClick={() => setCurrentPage(currentPage + 1)}
+                                  disabled={currentPage === totalPages}
+                                >
+                                  Next
+                                </Button>
+                                <Button
+                                  variant="outline"
+                                  size="sm"
+                                  onClick={() => setCurrentPage(totalPages)}
+                                  disabled={currentPage === totalPages}
+                                >
+                                  Last
+                                </Button>
+                              </div>
+                            </div>
+                          </div>
+                        </TabsContent>
+
+                        <TabsContent value="past-performance" className="mt-4">
+                          <div className="h-64 w-full bg-muted rounded-lg flex items-center justify-center">
+                            <p className="text-muted-foreground">Past Performance Content</p>
+                          </div>
+                        </TabsContent>
+
+                        <TabsContent value="key-personnel" className="mt-4">
+                          <div className="h-64 w-full bg-muted rounded-lg flex items-center justify-center">
+                            <p className="text-muted-foreground">Key Personnel Content</p>
+                          </div>
+                        </TabsContent>
+
+                        <TabsContent value="focus-documents" className="mt-4">
+                          <div className="h-64 w-full bg-muted rounded-lg flex items-center justify-center">
+                            <p className="text-muted-foreground">Focus Documents Content</p>
+                          </div>
+                        </TabsContent>
+                      </Tabs>
+                    </CardContent>
+                  </Card>
+                </div>
+              </div>
             </div>
           </div>
         </div>

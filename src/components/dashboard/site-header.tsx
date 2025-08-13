@@ -62,10 +62,6 @@ export function SiteHeader() {
             <span className="sr-only">Notifications</span>
           </Button>
           
-          <Button variant="ghost" size="icon">
-            <Settings className="h-4 w-4" />
-            <span className="sr-only">Settings</span>
-          </Button>
         </div>
       </div>
     </header>

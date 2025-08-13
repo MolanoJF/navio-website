@@ -13,6 +13,8 @@ import {
   Database,
   Workflow,
   Building,
+  ChevronDown,
+  ChevronRight,
 } from "lucide-react"
 
 import {
@@ -121,9 +123,31 @@ const data = {
 }
 
 export function AppSidebar({ onModuleChange, activeModule, variant = "sidebar", side = "left", collapsible = "offcanvas", ...props }: SidebarProps) {
+  const [collapsedItems, setCollapsedItems] = React.useState<Set<string>>(new Set(["insights", "activity", "build"]))
+
   const handleModuleClick = (moduleKey: string) => {
-    onModuleChange(moduleKey)
+    // Only toggle collapse for main items, don't navigate
+    if (data.navMain.find(item => item.key === moduleKey)?.items) {
+      toggleCollapse(moduleKey)
+    } else {
+      // For sub-items, navigate to them
+      onModuleChange(moduleKey)
+    }
   }
+
+  const toggleCollapse = (itemKey: string) => {
+    setCollapsedItems(prev => {
+      const newSet = new Set(prev)
+      if (newSet.has(itemKey)) {
+        newSet.delete(itemKey)
+      } else {
+        newSet.add(itemKey)
+      }
+      return newSet
+    })
+  }
+
+  const isCollapsed = (itemKey: string) => collapsedItems.has(itemKey)
 
   return (
     <Sidebar collapsible={collapsible} variant={variant} side={side} {...props}>
@@ -152,21 +176,32 @@ export function AppSidebar({ onModuleChange, activeModule, variant = "sidebar", 
                   <SidebarMenuButton 
                     tooltip={item.title}
                     onClick={() => handleModuleClick(item.key)}
-                    className={activeModule === item.key ? "bg-accent text-accent-foreground" : ""}
+                    className={`flex items-center justify-between ${activeModule === item.key ? "bg-accent text-accent-foreground" : ""}`}
                   >
-                    {item.icon && <item.icon />}
-                    <span>{item.title}</span>
+                    <div className="flex items-center gap-2">
+                      {item.icon && <item.icon />}
+                      <span>{item.title}</span>
+                    </div>
+                    {item.items && item.items.length > 0 && (
+                      <div className="ml-auto">
+                        {isCollapsed(item.key) ? (
+                          <ChevronRight className="size-4" />
+                        ) : (
+                          <ChevronDown className="size-4" />
+                        )}
+                      </div>
+                    )}
                   </SidebarMenuButton>
-                  {item.items && item.items.length > 0 && (
+                  {item.items && item.items.length > 0 && !isCollapsed(item.key) && (
                     <SidebarMenu className="ml-4 border-l border-sidebar-border pl-4">
                       {item.items.map((subItem) => (
                         <SidebarMenuItem key={subItem.title}>
                           <SidebarMenuButton 
                             tooltip={subItem.title} 
                             className={`text-sm ${activeModule === subItem.key ? "bg-accent text-accent-foreground" : ""}`}
-                            onClick={() => handleModuleClick(subItem.key)}
+                            onClick={() => onModuleChange(subItem.key)}
                           >
-                            {item.icon && <item.icon className="size-3" />}
+                            {subItem.icon && <subItem.icon className="size-3" />}
                             <span>{subItem.title}</span>
                           </SidebarMenuButton>
                         </SidebarMenuItem>

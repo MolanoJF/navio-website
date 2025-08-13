@@ -176,7 +176,7 @@ export function InsightsModule({ activeSubModule = "workflows" }: InsightsModule
 
 function WorkflowsInsights() {
   return (
-    <div className="flex flex-col gap-6 p-4 lg:p-6">
+    <div className="flex flex-col gap-6">
       {/* Header with Filters */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
@@ -322,7 +322,7 @@ function WorkflowsInsights() {
 
 function BottlenecksInsights() {
   return (
-    <div className="flex flex-col gap-6 p-4 lg:p-6">
+    <div className="flex flex-col gap-6">
       {/* Header */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
@@ -478,7 +478,7 @@ function BottlenecksInsights() {
 
 function ReportsInsights() {
   return (
-    <div className="flex flex-col gap-6 p-4 lg:p-6">
+    <div className="flex flex-col gap-6">
       {/* Header */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>

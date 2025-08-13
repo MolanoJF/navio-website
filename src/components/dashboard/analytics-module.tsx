@@ -95,7 +95,7 @@ export function AnalyticsModule({ activeSubModule = "interactions" }: AnalyticsM
 
 function InteractionsAnalytics({ timeRange, setTimeRange }: { timeRange: string; setTimeRange: (value: string) => void }) {
   return (
-    <div className="flex flex-col gap-6 p-4 lg:p-6">
+    <div className="flex flex-col gap-6">
       {/* KPI Cards */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Card>
@@ -341,7 +341,7 @@ function InteractionsAnalytics({ timeRange, setTimeRange }: { timeRange: string;
 
 function PerformanceAnalytics() {
   return (
-    <div className="flex flex-col gap-6 p-4 lg:p-6">
+    <div className="flex flex-col gap-6">
       {/* Performance KPI Cards */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Card>
