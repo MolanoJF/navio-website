@@ -4,7 +4,7 @@ import SolutionInAction from "@/components/SolutionInAction"
 import BusinessROI from "@/components/BusinessROI"
 import Dashboard from "@/components/Dashboard"
 import CallToAction from "@/components/CallToAction"
-import Testimonials from "@/components/Testimonials"
+import Integration from "@/components/Integration"
 import Footer from "@/components/Footer"
 
 export default function Home() {
@@ -15,7 +15,7 @@ export default function Home() {
       <SolutionInAction />
       <BusinessROI />
       <Dashboard />
-      <Testimonials />
+      <Integration />
       <CallToAction />
       <Footer />
     </main>

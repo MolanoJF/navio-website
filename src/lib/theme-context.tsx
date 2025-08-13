@@ -24,56 +24,24 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       const scrollY = window.scrollY
       const windowHeight = window.innerHeight
       
-      // Define section boundaries more precisely
-      const heroEnd = windowHeight * 0.8 // Hero section ends at 80% of viewport height
-      const businessROIStart = windowHeight * 0.8
-      const businessROIEnd = windowHeight * 2.2 // BusinessROI section ends around 2.2 viewport heights
-      const dashboardStart = windowHeight * 2.2
-      const dashboardEnd = windowHeight * 4.0 // Dashboard section extends until Call to Action starts
-      const callToActionStart = windowHeight * 4.0 // Call to Action section starts around 4.0 viewport heights
-      const callToActionEnd = windowHeight * 5.0 // Call to Action section ends around 5.0 viewport heights
-      const testimonialsStart = windowHeight * 5.0 // Testimonials section starts after Call to Action
+      // Define transition boundaries
+      const businessROIStart = windowHeight * 1.5 // BusinessROI section starts
+      const callToActionStart = windowHeight * 5.5 // Call to Action section starts (extended to cover Dashboard + Integration)
       
-      if (scrollY < heroEnd) {
-        // Hero section - dark theme
+      if (scrollY < businessROIStart) {
+        // Before BusinessROI - dark theme
         setThemeProgress(0)
         setTheme('dark')
         document.documentElement.classList.add('dark')
         document.documentElement.classList.remove('light')
-      } else if (scrollY >= businessROIStart && scrollY < businessROIEnd) {
-        // BusinessROI section - transition from dark to light
-        const progress = (scrollY - businessROIStart) / (businessROIEnd - businessROIStart)
-        setThemeProgress(progress)
-        if (progress > 0.5) {
-          setTheme('light')
-          document.documentElement.classList.remove('dark')
-          document.documentElement.classList.add('light')
-        } else {
-          setTheme('dark')
-          document.documentElement.classList.add('dark')
-          document.documentElement.classList.remove('light')
-        }
-      } else if (scrollY >= dashboardStart && scrollY < dashboardEnd) {
-        // Dashboard section - maintain light theme throughout
+      } else if (scrollY >= businessROIStart && scrollY < callToActionStart) {
+        // BusinessROI to Call to Action - light theme
         setThemeProgress(1)
         setTheme('light')
         document.documentElement.classList.remove('dark')
         document.documentElement.classList.add('light')
-      } else if (scrollY >= callToActionStart && scrollY < callToActionEnd) {
-        // Call to Action section - transition from light back to dark
-        const progress = (scrollY - callToActionStart) / (callToActionEnd - callToActionStart)
-        setThemeProgress(1 - progress) // Reverse progress: 1 = light, 0 = dark
-        if (progress > 0.5) {
-          setTheme('dark')
-          document.documentElement.classList.add('dark')
-          document.documentElement.classList.remove('light')
-        } else {
-          setTheme('light')
-          document.documentElement.classList.remove('dark')
-          document.documentElement.classList.add('light')
-        }
-      } else if (scrollY >= testimonialsStart) {
-        // Testimonials section and beyond - maintain dark theme
+      } else {
+        // After Call to Action - dark theme
         setThemeProgress(0)
         setTheme('dark')
         document.documentElement.classList.add('dark')

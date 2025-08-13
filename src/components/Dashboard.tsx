@@ -168,8 +168,8 @@ export default function Dashboard() {
     <section className="py-16 bg-background">
       <div className="container mx-auto px-4">
         <div className="mb-8 text-center">
-          <h2 className="text-3xl font-bold mb-4">Interactive Dashboard</h2>
-          <p className="text-muted-foreground text-lg">Monitor your business metrics and track progress in real-time</p>
+          <h2 className="text-3xl font-bold mb-4">Powerful Intelligence. Effortless Control.</h2>
+          <p className="text-muted-foreground text-lg">Get a real-time view of how users interact with your software</p>
         </div>
         
         <div className="bg-card rounded-lg border shadow-lg">

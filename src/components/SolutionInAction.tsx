@@ -55,7 +55,7 @@ export default function SolutionInAction() {
             From "How do I...?" to "Done."
           </h2>
           <p className="text-lg sm:text-xl text-foreground/70 max-w-3xl mx-auto leading-relaxed">
-          Sailbot empowers users to state any goal in plain language, then either shows them how to do it or simply completes the task for them.
+          Users tell Sailbot what they need, and it guides them step-by-step or gets it done—right inside your app..
           </p>
         </div>
 

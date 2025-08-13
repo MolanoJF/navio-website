@@ -31,7 +31,7 @@ export default function Hero() {
           
           {/* Sub-headline */}
           <p className="text-base sm:text-lg lg:text-xl text-foreground/80 leading-relaxed max-w-3xl mx-auto mb-8">
-            Sailbot is an intelligent layer that understands your app, enabling users to get guidance and automate entire workflows right inside your product.
+          An intelligent layer that understands your product, delivering instant, in-app guidance and powerful one-click automation.
           </p>
           
           {/* CTA Button */}
