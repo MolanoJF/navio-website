@@ -3,7 +3,7 @@ import Hero from "@/components/Hero"
 import What from "@/components/What"
 import Why from "@/components/Why"
 import How from "@/components/How"
-import CallToAction from "@/components/CallToAction"
+import CTA from "@/components/CTA"
 import Footer from "@/components/Footer"
 
 export default function Home() {
@@ -14,7 +14,7 @@ export default function Home() {
       <What />
       <Why />
       <How />
-      <CallToAction />
+      <CTA />
       <Footer />
     </main>
   )
