@@ -26,7 +26,7 @@ export default function Hero() {
         <div className="max-w-4xl text-center">
           {/* Main Headline */}
           <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground leading-tight tracking-tight mb-6">
-            Your product's new <br />Built-in expert
+          Your Software, <br />Effortless
           </h1>
           
           {/* Sub-headline */}

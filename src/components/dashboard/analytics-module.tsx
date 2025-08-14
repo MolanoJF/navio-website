@@ -100,8 +100,8 @@ function InteractionsAnalytics({ timeRange, setTimeRange }: { timeRange: string;
           <h2 className="text-2xl font-bold tracking-tight">Interactions</h2>
         </div>
       {/* KPI Cards */}
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        <Card>
+      <div className="flex flex-wrap gap-4">
+        <Card className="flex-1 min-w-[200px] ">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Interactions</CardTitle>
             <MessageSquare className="h-4 w-4 text-muted-foreground" />
@@ -118,7 +118,7 @@ function InteractionsAnalytics({ timeRange, setTimeRange }: { timeRange: string;
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="flex-1 min-w-[200px]">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Completed Workflows</CardTitle>
             <TrendingUp className="h-4 w-4 text-muted-foreground" />
@@ -135,7 +135,7 @@ function InteractionsAnalytics({ timeRange, setTimeRange }: { timeRange: string;
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="flex-1 min-w-[200px]">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Guided Questions</CardTitle>
             <Clock className="h-4 w-4 text-muted-foreground" />

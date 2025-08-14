@@ -27,7 +27,7 @@ const tabs = [
   }
 ]
 
-export default function SolutionInAction() {
+export default function What() {
   const [activeTab, setActiveTab] = React.useState('guide')
   const tabRefs = React.useRef<(HTMLButtonElement | null)[]>([])
   const [underlineStyle, setUnderlineStyle] = React.useState({ left: 0, width: 0 })

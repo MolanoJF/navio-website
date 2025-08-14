@@ -1,10 +1,9 @@
 import Navbar from "@/components/Navbar"
 import Hero from "@/components/Hero"
-import SolutionInAction from "@/components/SolutionInAction"
-import BusinessROI from "@/components/BusinessROI"
-import Dashboard from "@/components/Dashboard"
+import What from "@/components/What"
+import Why from "@/components/Why"
+import How from "@/components/How"
 import CallToAction from "@/components/CallToAction"
-import Integration from "@/components/Integration"
 import Footer from "@/components/Footer"
 
 export default function Home() {
@@ -12,10 +11,9 @@ export default function Home() {
     <main className="min-h-screen scroll-smooth">
       <Navbar />
       <Hero />
-      <SolutionInAction />
-      <BusinessROI />
-      <Dashboard />
-      <Integration />
+      <What />
+      <Why />
+      <How />
       <CallToAction />
       <Footer />
     </main>

@@ -78,6 +78,8 @@ html {
   --sidebar-accent-foreground: oklch(0.216 0.006 56.043);
   --sidebar-border: oklch(0.923 0.003 48.717);
   --sidebar-ring: oklch(0.709 0.01 56.259);
+  --font-sans: Manrope, ui-sans-serif, sans-serif, system-ui;
+  --font-serif: 'Cormorant Garamond', 'Source Serif 4', serif;
 }
 
 .dark {
@@ -112,6 +114,17 @@ html {
   --sidebar-accent-foreground: oklch(0.985 0.001 106.423);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.553 0.013 58.071);
+}
+
+/* Global style to reduce vertical spacing below headlines */
+.mb-4 {
+  margin-bottom: 0.5rem !important; /* Reduced from 1rem to 0.75rem */
+}
+
+/* Global serif font for h1 and h2 with light weight */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-sans) !important;
+  font-weight: 400 !important;
 }
 
 @layer base {
