@@ -1,6 +1,5 @@
 import { Manrope } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/lib/theme-context";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -22,9 +21,7 @@ export default function RootLayout({
       <body
         className={`${manrope.variable} antialiased`}
       >
-        <ThemeProvider>
-          {children}
-        </ThemeProvider>
+        {children}
       </body>
     </html>
   );

@@ -29,22 +29,10 @@ export function SiteHeader() {
                 Dashboard
               </BreadcrumbLink>
             </BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbPage>SAIL Assistant</BreadcrumbPage>
-            </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
         
         <div className="ml-auto flex items-center gap-2">
-          {/* Widget Status */}
-          <div className="flex items-center gap-2">
-            <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
-              <div className="w-2 h-2 bg-green-500 rounded-full mr-1"></div>
-              Widget Active
-            </Badge>
-          </div>
-          
           {/* Actions */}
           <Button variant="ghost" size="icon" className="relative">
             <Search className="h-4 w-4" />
@@ -53,12 +41,6 @@ export function SiteHeader() {
           
           <Button variant="ghost" size="icon" className="relative">
             <Bell className="h-4 w-4" />
-            <Badge 
-              variant="destructive" 
-              className="absolute -top-1 -right-1 h-4 w-4 rounded-full p-0 text-xs flex items-center justify-center"
-            >
-              3
-            </Badge>
             <span className="sr-only">Notifications</span>
           </Button>
           

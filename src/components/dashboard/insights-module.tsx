@@ -13,7 +13,8 @@ import {
   Calendar,
   BarChart3,
   PieChart,
-  Activity
+  Activity,
+  ArrowUpDown
 } from "lucide-react"
 
 import { Badge } from "@/components/ui/badge"
@@ -36,95 +37,328 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Progress } from "@/components/ui/progress"
 import { Separator } from "@/components/ui/separator"
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table"
+import {
+  ColumnDef,
+  flexRender,
+  getCoreRowModel,
+  getSortedRowModel,
+  SortingState,
+  useReactTable,
+} from "@tanstack/react-table"
 
 // Mock data for insights
 const frequentWorkflows = [
   {
     id: 1,
-    name: "Password Reset Assistance",
-    usage: 2847,
+    name: "1. Password Reset Assistance",
+    usage: 949,
     completion: 94.2,
-    avgTime: "2.3 minutes",
-    trend: "up",
-    change: 12.5
+    avgTime: "2.3 minutes"
   },
   {
     id: 2,
-    name: "Account Setup Guidance",
-    usage: 1923,
+    name: "2. Account Setup Guidance",
+    usage: 641,
     completion: 87.6,
-    avgTime: "4.7 minutes",
-    trend: "up",
-    change: 8.3
+    avgTime: "4.7 minutes"
   },
   {
     id: 3,
-    name: "Feature Discovery",
-    usage: 1654,
+    name: "3. Feature Discovery",
+    usage: 551,
     completion: 76.4,
-    avgTime: "3.2 minutes",
-    trend: "down",
-    change: -5.2
+    avgTime: "3.2 minutes"
   },
   {
     id: 4,
-    name: "Billing Inquiries",
-    usage: 1432,
+    name: "4. Billing Inquiries",
+    usage: 477,
     completion: 91.8,
-    avgTime: "3.8 minutes",
-    trend: "up",
-    change: 15.7
+    avgTime: "3.8 minutes"
   },
   {
     id: 5,
-    name: "Technical Troubleshooting",
-    usage: 1287,
-    completion: 82.3,
-    avgTime: "6.1 minutes",
-    trend: "down",
-    change: -2.1
+    name: "5. Integration with Third-Party Tools",
+    usage: 278,
+    completion: 74.5,
+    avgTime: "8.2 minutes"
+  },
+  {
+    id: 6,
+    name: "6. Team Member Onboarding",
+    usage: 233,
+    completion: 85.2,
+    avgTime: "6.0 minutes"
+  },
+  {
+    id: 7,
+    name: "7. Profile Customization",
+    usage: 210,
+    completion: 92.4,
+    avgTime: "2.8 minutes"
   }
 ]
 
 const bottlenecks = [
   {
-    id: 1,
-    type: "Drop-off Point",
-    location: "Account Verification Step 3",
-    impact: "High",
-    affectedUsers: 1247,
-    dropoffRate: 34.2,
-    description: "Users abandoning during phone verification"
+    step: 2,
+    stepName: "Data Import & Setup",
+    dropOffRate: "40.0%",
+    severity: "Critical",
+    primaryIssues: "CSV formatting errors, API complexity, timeout issues",
+    avgTimeStuck: "25 mins",
   },
   {
-    id: 2,
-    type: "Slow Response",
-    location: "Payment Processing",
-    impact: "Medium",
-    affectedUsers: 892,
-    avgDelay: "12.3s",
-    description: "Extended processing times for card validation"
+    step: 4,
+    stepName: "Integration Setup", 
+    dropOffRate: "35.0%",
+    severity: "Critical",
+    primaryIssues: "OAuth confusion, admin permissions, integration selection",
+    avgTimeStuck: "18 mins",
   },
   {
-    id: 3,
-    type: "Unresolved Query",
-    location: "Advanced Settings",
-    impact: "Medium",
-    affectedUsers: 654,
-    resolutionRate: 67.8,
-    description: "Complex configuration questions remain unanswered"
-  },
-  {
-    id: 4,
-    type: "Performance Issue",
-    location: "File Upload",
-    impact: "Low",
-    affectedUsers: 423,
-    errorRate: 8.7,
-    description: "Occasional timeouts during large file uploads"
+    step: 3,
+    stepName: "Workflow Configuration",
+    dropOffRate: "29.6%",
+    severity: "High",
+    primaryIssues: "Decision paralysis, complex setup options, unclear guidance",
+    avgTimeStuck: "15 mins",
   }
 ]
 
+type BottleneckRow = {
+  step: number
+  stepName: string
+  dropOffRate: string
+  severity: "Critical" | "High" | "Medium" | "Low"
+  primaryIssues: string
+  avgTimeStuck: string
+}
+
+type WorkflowRow = {
+  id: number
+  name: string
+  usage: number
+  completion: number
+  avgTime: string
+}
+
+function DataTable<TData, TValue>({
+  tableColumns,
+  data,
+}: {
+  tableColumns: ColumnDef<TData, TValue>[]
+  data: TData[]
+}) {
+  const [sorting, setSorting] = React.useState<SortingState>([])
+  const [rowSelection, setRowSelection] = React.useState({})
+
+  const table = useReactTable({
+    data,
+    columns: tableColumns,
+    onSortingChange: setSorting,
+    getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    onRowSelectionChange: setRowSelection,
+    state: {
+      sorting,
+      rowSelection,
+    },
+  })
+
+  return (
+    <div className="w-full">
+      <div className="overflow-hidden rounded-md border bg-card">
+        <Table>
+          <TableHeader>
+            {table.getHeaderGroups().map((headerGroup: any) => (
+              <TableRow key={headerGroup.id}>
+                {headerGroup.headers.map((header: any) => {
+                  return (
+                    <TableHead key={header.id}>
+                      {header.isPlaceholder
+                        ? null
+                        : flexRender(header.column.columnDef.header, header.getContext())}
+                    </TableHead>
+                  )
+                })}
+              </TableRow>
+            ))}
+          </TableHeader>
+          <TableBody>
+            {table.getRowModel().rows?.length ? (
+              table.getRowModel().rows.map((row: any) => (
+                <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
+                  {row.getVisibleCells().map((cell: any) => (
+                    <TableCell key={cell.id}>
+                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ))
+            ) : (
+              <TableRow>
+                <TableCell colSpan={tableColumns.length} className="h-24 text-center">
+                  No results.
+                </TableCell>
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+      </div>
+      <div className="flex items-center justify-end space-x-2 py-4">
+        <div className="text-muted-foreground flex-1 text-sm">
+          {table.getFilteredSelectedRowModel().rows.length} of {table.getFilteredRowModel().rows.length} row(s) selected.
+        </div>
+        <div className="space-x-2">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => table.previousPage()}
+            disabled={!table.getCanPreviousPage()}
+          >
+            Previous
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => table.nextPage()}
+            disabled={!table.getCanNextPage()}
+          >
+            Next
+          </Button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+const bottlenecksColumns: ColumnDef<BottleneckRow>[] = [
+  {
+    id: "bottleneck",
+    header: ({ column }: { column: any }) => (
+      <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
+        Step
+        <ArrowUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
+    cell: ({ row }: { row: any }) => (
+      <div>
+        <div className="font-medium">Step {row.original.step}</div>
+        <div className="text-sm text-muted-foreground">{row.original.stepName}</div>
+      </div>
+    ),
+  },
+  {
+    accessorKey: "severity",
+    header: ({ column }: { column: any }) => (
+      <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
+        Severity
+        <ArrowUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
+    cell: ({ row }: { row: any }) => (
+      <Badge
+        variant={
+          row.original.severity === 'Critical' ? 'destructive' :
+          row.original.severity === 'High' ? 'default' : 'secondary'
+        }
+      >
+        {row.original.severity}
+      </Badge>
+    ),
+  },
+  {
+    accessorKey: "dropOffRate",
+    header: ({ column }: { column: any }) => (
+      <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
+        Drop-off Rate
+        <ArrowUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
+    cell: ({ row }) => <span>{row.original.dropOffRate}</span>,
+  },
+  {
+    accessorKey: "avgTimeStuck",
+    header: ({ column }: { column: any }) => (
+      <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
+        Avg Time Stuck
+        <ArrowUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
+    cell: ({ row }) => <span>{row.original.avgTimeStuck}</span>,
+  },
+  {
+    accessorKey: "primaryIssues",
+    header: "Primary Issues",
+    cell: ({ row }) => <span className="text-sm">{row.original.primaryIssues}</span>,
+  },
+  {
+    id: "actions",
+    header: "",
+    cell: () => (
+      <Button variant="outline" size="sm">View details</Button>
+    ),
+    enableSorting: false,
+    enableHiding: false,
+  },
+]
+
+const workflowColumns: ColumnDef<WorkflowRow>[] = [
+  {
+    accessorKey: "name",
+    header: ({ column }: { column: any }) => (
+      <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
+        Workflow
+        <ArrowUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
+    cell: ({ row }) => <span className="font-medium">{row.original.name}</span>,
+  },
+  {
+    accessorKey: "usage",
+    header: ({ column }: { column: any }) => (
+      <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
+        Uses
+        <ArrowUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
+    cell: ({ row }) => <span>{row.original.usage.toLocaleString()}</span>,
+  },
+  {
+    accessorKey: "avgTime",
+    header: ({ column }: { column: any }) => (
+      <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
+        Avg Time
+        <ArrowUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
+  },
+  {
+    accessorKey: "completion",
+    header: ({ column }: { column: any }) => (
+      <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
+        Completion
+        <ArrowUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
+    cell: ({ row }) => (
+      <div className="flex items-center gap-2">
+        <span className="font-medium">{row.original.completion}%</span>
+        <Progress value={row.original.completion} className="w-16 h-2" />
+      </div>
+    ),
+  },
+
+]
 const reportTemplates = [
   {
     id: 1,
@@ -181,8 +415,8 @@ function WorkflowsInsights() {
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h2 className="text-2xl font-bold tracking-tight">Workflow Insights</h2>
-          <p className="text-muted-foreground">
-            Actionable intelligence about user behavior and system performance
+                    <p className="text-muted-foreground">
+            Frequent workflows and  usage patterns
           </p>
         </div>
         <div className="flex items-center gap-2">
@@ -203,98 +437,22 @@ function WorkflowsInsights() {
         </div>
       </div>
 
-      {/* Workflow Overview Cards */}
-      <div className="grid gap-4 md:grid-cols-3">
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Most Popular Workflow</CardTitle>
-            <Users className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-xl font-bold">Password Reset</div>
-            <p className="text-xs text-muted-foreground">
-              2,847 uses this week (+12.5%)
-            </p>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Avg Completion Rate</CardTitle>
-            <BarChart3 className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-xl font-bold">86.5%</div>
-            <p className="text-xs text-muted-foreground">
-              Across all workflows (+3.2%)
-            </p>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Avg Duration</CardTitle>
-            <Clock className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-xl font-bold">4.0 min</div>
-            <p className="text-xs text-muted-foreground">
-              Per workflow completion (-0.8%)
-            </p>
-          </CardContent>
-        </Card>
-      </div>
-
       {/* Detailed Workflow Analysis */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Workflow Performance Analysis</CardTitle>
-          <CardDescription>
-            Detailed breakdown of your most frequently used workflows
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-4">
-            {frequentWorkflows.map((workflow) => (
-              <div key={workflow.id} className="flex items-center justify-between p-4 border rounded-lg">
-                <div className="flex-1 space-y-1">
-                  <div className="flex items-center gap-2">
-                    <h4 className="font-medium">{workflow.name}</h4>
-                    <Badge variant={workflow.trend === 'up' ? 'default' : 'secondary'}>
-                      {workflow.trend === 'up' ? (
-                        <TrendingUp className="h-3 w-3 mr-1" />
-                      ) : (
-                        <TrendingDown className="h-3 w-3 mr-1" />
-                      )}
-                      {workflow.change > 0 ? '+' : ''}{workflow.change}%
-                    </Badge>
-                  </div>
-                  <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                    <span>{workflow.usage.toLocaleString()} uses</span>
-                    <span>{workflow.completion}% completion</span>
-                    <span>{workflow.avgTime} avg time</span>
-                  </div>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="text-right">
-                    <div className="text-sm font-medium">{workflow.completion}%</div>
-                    <Progress value={workflow.completion} className="w-16 h-2" />
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
+      <DataTable<WorkflowRow, unknown>
+            tableColumns={workflowColumns}
+            data={frequentWorkflows as WorkflowRow[]}
+          />
+
 
       {/* User Journey Visualization */}
+      <div>
+          <h2 className="text-2xl font-bold tracking-tight">User Path Visualization</h2>
+                    <p className="text-muted-foreground">
+                    Most common user journeys through your application
+          </p>
+        </div>
+      
       <Card>
-        <CardHeader>
-          <CardTitle>User Path Visualization</CardTitle>
-          <CardDescription>
-            Most common user journeys through your assistant
-          </CardDescription>
-        </CardHeader>
         <CardContent>
           <div className="space-y-4">
             <div className="flex items-center justify-between">
@@ -324,11 +482,12 @@ function BottlenecksInsights() {
   return (
     <div className="flex flex-col gap-6">
       {/* Header */}
+      
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h2 className="text-2xl font-bold tracking-tight">Bottleneck Analysis</h2>
-          <p className="text-muted-foreground">
-            Identify and resolve user friction points in your workflows
+                    <h2 className="text-2xl font-bold tracking-tight">Identified Bottlenecks</h2>
+                    <p className="text-muted-foreground">
+                    Areas where users experience friction or delays
           </p>
         </div>
         <div className="flex items-center gap-2">
@@ -345,133 +504,11 @@ function BottlenecksInsights() {
         </div>
       </div>
 
-      {/* Bottleneck Summary */}
-      <div className="grid gap-4 md:grid-cols-4">
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Critical Issues</CardTitle>
-            <AlertCircle className="h-4 w-4 text-red-500" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-red-600">1</div>
-            <p className="text-xs text-muted-foreground">
-              Requires immediate attention
-            </p>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Medium Priority</CardTitle>
-            <AlertCircle className="h-4 w-4 text-yellow-500" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-yellow-600">2</div>
-            <p className="text-xs text-muted-foreground">
-              Should be addressed soon
-            </p>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Low Priority</CardTitle>
-            <AlertCircle className="h-4 w-4 text-blue-500" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-blue-600">1</div>
-            <p className="text-xs text-muted-foreground">
-              Monitor for changes
-            </p>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Affected</CardTitle>
-            <Users className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">3,216</div>
-            <p className="text-xs text-muted-foreground">
-              Users impacted this week
-            </p>
-          </CardContent>
-        </Card>
-      </div>
-
       {/* Detailed Bottleneck Analysis */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Identified Bottlenecks</CardTitle>
-          <CardDescription>
-            Areas where users experience friction or delays
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-4">
-            {bottlenecks.map((bottleneck) => (
-              <div key={bottleneck.id} className="border rounded-lg p-4">
-                <div className="flex items-start justify-between mb-2">
-                  <div className="flex items-center gap-2">
-                    <Badge 
-                      variant={
-                        bottleneck.impact === 'High' ? 'destructive' :
-                        bottleneck.impact === 'Medium' ? 'default' : 'secondary'
-                      }
-                    >
-                      {bottleneck.impact} Impact
-                    </Badge>
-                    <span className="font-medium">{bottleneck.type}</span>
-                  </div>
-                  <Button variant="outline" size="sm">
-                    View Details
-                  </Button>
-                </div>
-                
-                <h4 className="font-medium mb-1">{bottleneck.location}</h4>
-                <p className="text-sm text-muted-foreground mb-3">{bottleneck.description}</p>
-                
-                <div className="flex items-center gap-4 text-sm">
-                  <span><strong>{bottleneck.affectedUsers.toLocaleString()}</strong> affected users</span>
-                  {bottleneck.dropoffRate && (
-                    <span><strong>{bottleneck.dropoffRate}%</strong> drop-off rate</span>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Friction Points Heatmap */}
-      <Card>
-        <CardHeader>
-          <CardTitle>User Friction Heatmap</CardTitle>
-          <CardDescription>
-            Visual representation of where users encounter difficulties
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-8 gap-2">
-            {Array.from({ length: 64 }, (_, i) => (
-              <div
-                key={i}
-                className={`aspect-square rounded ${
-                  i < 10 ? 'bg-red-200' :
-                  i < 25 ? 'bg-yellow-200' :
-                  i < 45 ? 'bg-green-200' :
-                  'bg-gray-100'
-                }`}
-              />
-            ))}
-          </div>
-          <div className="flex items-center justify-between mt-4 text-xs text-muted-foreground">
-            <span>Low friction</span>
-            <span>High friction</span>
-          </div>
-        </CardContent>
-      </Card>
+      <DataTable<BottleneckRow, unknown>
+            tableColumns={bottlenecksColumns}
+            data={bottlenecks as BottleneckRow[]}
+          />
     </div>
   )
 }

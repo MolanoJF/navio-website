@@ -18,7 +18,9 @@ import {
   Globe,
   Shield,
   Zap,
-  CheckCircle
+  CheckCircle,
+  ArrowUpDown,
+  ChevronDown
 } from "lucide-react"
 
 import { Badge } from "@/components/ui/badge"
@@ -30,6 +32,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import {
@@ -50,12 +53,29 @@ import {
 import { Separator } from "@/components/ui/separator"
 import { Progress } from "@/components/ui/progress"
 import { Checkbox } from "@/components/ui/checkbox"
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table"
+
+import {
+  ColumnDef,
+  flexRender,
+  getCoreRowModel,
+  getSortedRowModel,
+  SortingState,
+  useReactTable,
+} from "@tanstack/react-table"
 
 // Mock data for knowledge base sources
 const knowledgeBaseSources = [
   {
     id: 1,
-    type: "url",
+    type: "Url",
     name: "Company Documentation",
     source: "https://docs.company.com",
     status: "active",
@@ -73,22 +93,14 @@ const knowledgeBaseSources = [
   },
   {
     id: 3,
-    type: "url",
+    type: "Url",
     name: "FAQ Database",
     source: "https://help.company.com/faq",
     status: "active",
     lastUpdated: "1 day ago",
     documents: 156
   },
-  {
-    id: 4,
-    type: "file",
-    name: "Training Materials",
-    source: "training-docs.zip",
-    status: "error",
-    lastUpdated: "3 days ago",
-    documents: 0
-  }
+
 ]
 
 // Mock workflow data
@@ -122,6 +134,219 @@ const workflows = [
   }
 ]
 
+// Mock rules data
+const rules = [
+
+  {
+    rule: "Suggest Teams plan when multiple users are invited",
+    goalType: "Revenue Goal",
+    goalDescription: "Upsell collaborative features to growing teams",
+    trigger: "User on individual plan invites more than 2 colleagues"
+  },
+  {
+    rule: "Explain the benefit of a key feature on first view",
+    goalType: "Activation Goal",
+    goalDescription: "Improve contextual feature discovery and understanding",
+    trigger: "User navigates to the 'Automations' page for the first time"
+  },
+  {
+    rule: "Request feedback upon subscription cancellation",
+    goalType: "Retention Goal",
+    goalDescription: "Gather actionable data on reasons for churn",
+    trigger: "User initiates the subscription cancellation workflow"
+  },
+  {
+    rule: "Offer a 'pause' subscription option during cancellation flow",
+    goalType: "Retention Goal",
+    goalDescription: "Reduce churn by offering an alternative to outright cancelling",
+    trigger: "User selects 'I don't need it right now' as a cancellation reason"
+  },
+]
+
+// Types for tables
+interface KnowledgeSourceRow {
+  id: number
+  type: string
+  name: string
+  source: string
+  status: string
+  lastUpdated: string
+  documents: number
+}
+
+interface RuleRow {
+  rule: string
+  goalType: "Revenue Goal" | "Retention Goal " 
+  goalDescription: string
+  trigger: string
+}
+
+// Generic DataTable component (shadcn + TanStack Table)
+function DataTable<TData, TValue>({
+  tableColumns,
+  data,
+}: {
+  tableColumns: ColumnDef<TData, TValue>[]
+  data: TData[]
+}) {
+  const [sorting, setSorting] = React.useState<SortingState>([])
+  const [rowSelection, setRowSelection] = React.useState({})
+
+  const table = useReactTable({
+    data,
+    columns: tableColumns,
+    onSortingChange: setSorting,
+    getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    onRowSelectionChange: setRowSelection,
+    state: {
+      sorting,
+      rowSelection,
+    },
+  })
+
+  return (
+    <div className="w-full">
+      <div className="overflow-hidden rounded-md border bg-card">
+        <Table>
+          <TableHeader>
+            {table.getHeaderGroups().map((headerGroup: any) => (
+              <TableRow key={headerGroup.id}>
+                {headerGroup.headers.map((header: any) => {
+                  return (
+                    <TableHead key={header.id}>
+                      {header.isPlaceholder
+                        ? null
+                        : flexRender(header.column.columnDef.header, header.getContext())}
+                    </TableHead>
+                  )
+                })}
+              </TableRow>
+            ))}
+          </TableHeader>
+          <TableBody>
+            {table.getRowModel().rows?.length ? (
+              table.getRowModel().rows.map((row: any) => (
+                <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
+                  {row.getVisibleCells().map((cell: any) => (
+                    <TableCell key={cell.id}>
+                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ))
+            ) : (
+              <TableRow>
+                <TableCell colSpan={tableColumns.length} className="h-24 text-center">
+                  No results.
+                </TableCell>
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+      </div>
+      <div className="flex items-center justify-end space-x-2 py-4">
+        <div className="text-muted-foreground flex-1 text-sm">
+          {table.getFilteredSelectedRowModel().rows.length} of {table.getFilteredRowModel().rows.length} row(s) selected.
+        </div>
+        <div className="space-x-2">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => table.previousPage()}
+            disabled={!table.getCanPreviousPage()}
+          >
+            Previous
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => table.nextPage()}
+            disabled={!table.getCanNextPage()}
+          >
+            Next
+          </Button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// Columns for Knowledge Sources
+const knowledgeSourcesColumns: ColumnDef<KnowledgeSourceRow>[] = [
+  {
+    accessorKey: "type",
+    header: ({ column }: { column: any }) => (
+      <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
+        Type
+        <ArrowUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
+    cell: ({ row }: { row: any }) => (
+      <div className="flex items-center gap-2">
+        <div className="p-2 bg-muted rounded-lg">
+          {row.original.type === "url" ? <Link className="h-4 w-4" /> : <FileText className="h-4 w-4" />}
+        </div>
+        <span className="capitalize">{row.original.type}</span>
+      </div>
+    ),
+  },
+  {
+    accessorKey: "name",
+    header: ({ column }: { column: any }) => (
+      <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
+        Name
+        <ArrowUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
+    cell: ({ row }: { row: any }) => <span className="font-medium">{row.original.name}</span>,
+  },
+  {
+    accessorKey: "source",
+    header: "Source",
+    cell: ({ row }: { row: any }) => <span className="text-muted-foreground">{row.original.source}</span>,
+  },
+
+  {
+    accessorKey: "lastUpdated",
+    header: "Last Updated",
+  },
+]
+
+// Columns for Rules
+const rulesColumns: ColumnDef<RuleRow>[] = [
+  {
+    accessorKey: "rule",
+    header: ({ column }: { column: any }) => (
+      <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
+        Rule
+        <ArrowUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
+    cell: ({ row }) => <span className="font-medium">{row.original.rule}</span>,
+  },
+  {
+    accessorKey: "goalType",
+    header: ({ column }: { column: any }) => (
+      <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
+        Goal Type
+        <ArrowUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
+    cell: ({ row }: { row: any }) => (
+      <Badge variant={row.original.goalType === 'Revenue Goal' ? 'default' : 'secondary'}>
+        {row.original.goalType}
+      </Badge>
+    ),
+  },
+
+  {
+    accessorKey: "trigger",
+    header: "Trigger Condition",
+    cell: ({ row }) => <span className="whitespace-normal max-w-[300px] block">{row.original.trigger}</span>,
+  },
+]
+
 interface BuildModuleProps {
   activeSubModule?: string
 }
@@ -146,9 +371,6 @@ function AgentConfigView() {
       {/* Header */}
       <div>
         <h2 className="text-2xl font-bold tracking-tight">Agent Configuration</h2>
-        <p className="text-muted-foreground">
-          Customize your AI assistant's behavior, personality, and capabilities
-        </p>
       </div>
 
       {/* Agent Settings */}
@@ -311,13 +533,11 @@ function AgentConfigView() {
 function KnowledgeBaseView() {
   return (
     <div className="flex flex-col gap-6">
+      {/* Knowledge Sources Table */}
       {/* Header */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h2 className="text-2xl font-bold tracking-tight">Knowledge Base</h2>
-          <p className="text-muted-foreground">
-            Manage your assistant's knowledge sources and training data
-          </p>
+          <h2 className="text-2xl font-bold tracking-tight">Knowledge Sources</h2>
         </div>
         <Button>
           <Upload className="h-4 w-4 mr-2" />
@@ -325,115 +545,27 @@ function KnowledgeBaseView() {
         </Button>
       </div>
 
-      {/* Knowledge Base Stats */}
-      <div className="grid gap-4 md:grid-cols-4">
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Sources</CardTitle>
-            <Database className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{knowledgeBaseSources.length}</div>
-            <p className="text-xs text-muted-foreground">
-              Knowledge sources
-            </p>
-          </CardContent>
-        </Card>
+             <DataTable<KnowledgeSourceRow, unknown>
+         tableColumns={knowledgeSourcesColumns}
+         data={knowledgeBaseSources as KnowledgeSourceRow[]}
+       />
 
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Documents</CardTitle>
-            <FileText className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">
-              {knowledgeBaseSources.reduce((sum, source) => sum + source.documents, 0)}
-            </div>
-            <p className="text-xs text-muted-foreground">
-              Indexed documents
-            </p>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Active Sources</CardTitle>
-            <CheckCircle className="h-4 w-4 text-green-600" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">
-              {knowledgeBaseSources.filter(s => s.status === 'active').length}
-            </div>
-            <p className="text-xs text-muted-foreground">
-              Currently active
-            </p>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Processing</CardTitle>
-            <RotateCcw className="h-4 w-4 text-blue-600" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">
-              {knowledgeBaseSources.filter(s => s.status === 'processing').length}
-            </div>
-            <p className="text-xs text-muted-foreground">
-              In progress
-            </p>
-          </CardContent>
-        </Card>
+      {/* Rules Table (DataTable) */}
+            {/* Header */}
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <h2 className="text-2xl font-bold tracking-tight">Rules</h2>
+        </div>
+        <Button>
+          <Upload className="h-4 w-4 mr-2" />
+          Add Rule
+        </Button>
       </div>
-
-      {/* Knowledge Sources List */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Knowledge Sources</CardTitle>
-          <CardDescription>
-            Manage your data sources and their processing status
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-4">
-            {knowledgeBaseSources.map((source) => (
-              <div key={source.id} className="flex items-center justify-between p-4 border rounded-lg">
-                <div className="flex items-center gap-3">
-                  <div className="p-2 bg-muted rounded-lg">
-                    {source.type === 'url' ? (
-                      <Link className="h-4 w-4" />
-                    ) : (
-                      <FileText className="h-4 w-4" />
-                    )}
-                  </div>
-                  <div>
-                    <h4 className="font-medium">{source.name}</h4>
-                    <p className="text-sm text-muted-foreground">{source.source}</p>
-                    <div className="flex items-center gap-2 mt-1">
-                      <Badge variant={source.status === 'active' ? 'default' : source.status === 'processing' ? 'secondary' : 'destructive'}>
-                        {source.status}
-                      </Badge>
-                      <span className="text-xs text-muted-foreground">
-                        {source.documents} documents • {source.lastUpdated}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Button variant="outline" size="sm">
-                    <RotateCcw className="h-3 w-3 mr-1" />
-                    Refresh
-                  </Button>
-                  <Button variant="outline" size="sm">
-                    <Settings className="h-3 w-3 mr-1" />
-                    Configure
-                  </Button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
+             <DataTable<RuleRow, unknown>
+         tableColumns={rulesColumns}
+         data={rules as RuleRow[]}
+       />
+      
     </div>
   )
 }
@@ -445,9 +577,6 @@ function WorkflowsView() {
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h2 className="text-2xl font-bold tracking-tight">Workflow Builder</h2>
-          <p className="text-muted-foreground">
-            Create and manage automated workflows for your users
-          </p>
         </div>
         <Button>
           <Workflow className="h-4 w-4 mr-2" />

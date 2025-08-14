@@ -29,7 +29,7 @@ export default function Navbar() {
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link href="/" className="text-2xl lg:text-3xl font-bold text-foreground tracking-tight hover:opacity-80 transition-opacity">
-              SAILBOT
+              NAVIO
             </Link>
           </div>
 

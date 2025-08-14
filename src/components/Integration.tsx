@@ -2,11 +2,8 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { IconCode, IconPalette } from "@tabler/icons-react"
-import { useTheme } from "@/lib/theme-context"
 
 export default function Integration() {
-  const { theme } = useTheme()
-  
   return (
     <section className="py-30 relative overflow-hidden bg-background ">
 

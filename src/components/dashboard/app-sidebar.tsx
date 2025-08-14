@@ -15,6 +15,10 @@ import {
   Building,
   ChevronDown,
   ChevronRight,
+  AlertTriangle,
+  FileText,
+  MessageSquare,
+  PieChart,
 } from "lucide-react"
 
 import {
@@ -49,12 +53,12 @@ const data = {
     {
       title: "Analytics",
       key: "analytics",
-      icon: BarChart3,
+      icon: PieChart,
       items: [
         {
           title: "Interactions",
           key: "analytics-interactions",
-          icon: ChartBar,
+          icon: BarChart3,
         },
         {
           title: "Performance",
@@ -69,19 +73,19 @@ const data = {
       icon: Brain,
       items: [
         {
-          title: "Workflows",
+          title: "Usage",
           key: "insights-workflows",
           icon: Workflow,
         },
         {
           title: "Bottlenecks",
           key: "insights-bottlenecks",
-          icon: TrendingUp,
+          icon: AlertTriangle,
         },
         {
           title: "Reports",
           key: "insights-reports",
-          icon: BarChart3,
+          icon: FileText,
         },
       ],
     },

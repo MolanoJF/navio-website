@@ -35,13 +35,13 @@ import { Progress } from "@/components/ui/progress"
 
 // Mock data for analytics
 const interactionData = [
-  { date: "2024-01-01", interactions: 1240, completedWorkflows: 890, guidedQuestions: 350 },
-  { date: "2024-01-02", interactions: 1380, completedWorkflows: 920, guidedQuestions: 460 },
-  { date: "2024-01-03", interactions: 1520, completedWorkflows: 1100, guidedQuestions: 420 },
-  { date: "2024-01-04", interactions: 1680, completedWorkflows: 1200, guidedQuestions: 480 },
-  { date: "2024-01-05", interactions: 1850, completedWorkflows: 1350, guidedQuestions: 500 },
-  { date: "2024-01-06", interactions: 1720, completedWorkflows: 1280, guidedQuestions: 440 },
-  { date: "2024-01-07", interactions: 1920, completedWorkflows: 1420, guidedQuestions: 500 },
+  { date: "2024-01-01", interactions: 413, completedWorkflows: 297, guidedQuestions: 117 },
+  { date: "2024-01-02", interactions: 460, completedWorkflows: 307, guidedQuestions: 153 },
+  { date: "2024-01-03", interactions: 507, completedWorkflows: 367, guidedQuestions: 140 },
+  { date: "2024-01-04", interactions: 560, completedWorkflows: 400, guidedQuestions: 160 },
+  { date: "2024-01-05", interactions: 617, completedWorkflows: 450, guidedQuestions: 167 },
+  { date: "2024-01-06", interactions: 573, completedWorkflows: 427, guidedQuestions: 147 },
+  { date: "2024-01-07", interactions: 640, completedWorkflows: 473, guidedQuestions: 167 },
 ]
 
 const performanceData = [
@@ -96,21 +96,24 @@ export function AnalyticsModule({ activeSubModule = "interactions" }: AnalyticsM
 function InteractionsAnalytics({ timeRange, setTimeRange }: { timeRange: string; setTimeRange: (value: string) => void }) {
   return (
     <div className="flex flex-col gap-6">
+        <div>
+          <h2 className="text-2xl font-bold tracking-tight">Interactions</h2>
+        </div>
       {/* KPI Cards */}
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Interactions</CardTitle>
             <MessageSquare className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">12,847</div>
+            <div className="text-2xl font-bold">4,023</div>
             <p className="text-xs text-muted-foreground">
               <Badge variant="secondary" className="text-green-600">
                 <TrendingUp className="h-3 w-3 mr-1" />
                 +12.5%
               </Badge>
-              from last week
+                from last week
             </p>
           </CardContent>
         </Card>
@@ -121,7 +124,7 @@ function InteractionsAnalytics({ timeRange, setTimeRange }: { timeRange: string;
             <TrendingUp className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">8,920</div>
+            <div className="text-2xl font-bold">2,973</div>
             <p className="text-xs text-muted-foreground">
               <Badge variant="secondary" className="text-green-600">
                 <TrendingUp className="h-3 w-3 mr-1" />
@@ -138,28 +141,11 @@ function InteractionsAnalytics({ timeRange, setTimeRange }: { timeRange: string;
             <Clock className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">3,150</div>
+            <div className="text-2xl font-bold">1,050</div>
             <p className="text-xs text-muted-foreground">
               <Badge variant="secondary" className="text-red-600">
                 <TrendingDown className="h-3 w-3 mr-1" />
                 -2.1%
-              </Badge>
-              from last week
-            </p>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Active Users</CardTitle>
-            <Users className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">2,847</div>
-            <p className="text-xs text-muted-foreground">
-              <Badge variant="secondary" className="text-green-600">
-                <TrendingUp className="h-3 w-3 mr-1" />
-                +15.3%
               </Badge>
               from last week
             </p>
