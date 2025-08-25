@@ -9,8 +9,8 @@ export default function Why() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-white transition-colors duration-300">
+        <div className="text-center mb-8">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 text-white transition-colors duration-300">
           Activate Users. Transform Your Product.
           </h2>
           <p className="text-lg sm:text-xl max-w-3xl mx-auto leading-relaxed text-white opacity-70 transition-colors duration-300">
@@ -23,7 +23,7 @@ export default function Why() {
           {/* Column 1: Slash Support Costs */}
           <div className="relative p-6 lg:p-8">
             <div className="text-left mb-6">
-              <h3 className="text-xl lg:text-2xl font-bold text-white mb-4 transition-colors duration-300">
+              <h3 className="text-xl lg:text-2xl font-bold text-white mb-2 transition-colors duration-300">
                 Slash Your Support Costs
               </h3>
               <p className="leading-relaxed text-white opacity-70 transition-colors duration-300">
@@ -41,7 +41,7 @@ export default function Why() {
           {/* Column 2: Double User Activation */}
           <div className="relative p-6 lg:p-8">
             <div className="text-left mb-6">
-              <h3 className="text-xl lg:text-2xl font-bold text-white mb-4 transition-colors duration-300">
+              <h3 className="text-xl lg:text-2xl font-bold text-white mb-2 transition-colors duration-300">
                 Double User Activation
               </h3>
               <p className="leading-relaxed text-white opacity-70 transition-colors duration-300">
@@ -59,7 +59,7 @@ export default function Why() {
           {/* Column 3: Uncover Actionable Insights */}
           <div className="relative p-6 lg:p-8">
             <div className="text-left mb-6">
-              <h3 className="text-xl lg:text-2xl font-bold text-white mb-4 transition-colors duration-300">
+              <h3 className="text-xl lg:text-2xl font-bold text-white mb-2 transition-colors duration-300">
                 Get Actionable Insights
               </h3>
               <p className="leading-relaxed text-white opacity-70 transition-colors duration-300">

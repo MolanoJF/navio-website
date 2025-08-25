@@ -51,7 +51,7 @@ export default function What() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
             From "How do I...?" to "Done."
           </h2>
           <p className="text-lg sm:text-xl text-foreground/70 max-w-3xl mx-auto leading-relaxed">

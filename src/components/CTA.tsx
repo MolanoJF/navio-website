@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 
 export default function CTA() {
   return (
-    <section className="pb-40 pt-0 relative overflow-hidden">
+    <section className="min-h-screen pt-0 relative overflow-hidden">
       {/* Video Background */}
       <video
         autoPlay
