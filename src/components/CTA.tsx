@@ -18,7 +18,7 @@ export default function CTA() {
       </video>
       
       {/* Dark Overlay for Text Readability */}
-      <div className="absolute inset-0 bg-black/50" />
+      <div className="absolute inset-0 bg-black/20" />
       
       <div className="container mx-auto px-8 sm:px-12 lg:px-16 relative z-10 pt-20">
         <div className="flex flex-col lg:flex-row items-start justify-between max-w-6xl mx-auto">

@@ -182,8 +182,8 @@ export function AppSidebar({ onModuleChange, activeModule, variant = "sidebar", 
                     onClick={() => handleModuleClick(item.key)}
                     className={`flex items-center justify-between ${activeModule === item.key ? "bg-accent text-accent-foreground" : ""}`}
                   >
-                    <div className="flex items-center gap-2">
-                      {item.icon && <item.icon />}
+                    <div className="flex items-center gap-3">
+                      {item.icon && <item.icon className="size-5" />}
                       <span>{item.title}</span>
                     </div>
                     {item.items && item.items.length > 0 && (
@@ -205,7 +205,7 @@ export function AppSidebar({ onModuleChange, activeModule, variant = "sidebar", 
                             className={`text-sm ${activeModule === subItem.key ? "bg-accent text-accent-foreground" : ""}`}
                             onClick={() => onModuleChange(subItem.key)}
                           >
-                            {subItem.icon && <subItem.icon className="size-3" />}
+                            {subItem.icon && <subItem.icon className="size-2" />}
                             <span>{subItem.title}</span>
                           </SidebarMenuButton>
                         </SidebarMenuItem>

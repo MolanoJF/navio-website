@@ -38,18 +38,22 @@ export default function How() {
     <section className="py-16 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* How Section */}
-        <div className="mb-8 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-top mb-10">
           <div className="text-left">
-            <h2 className="text-3xl font-bold mb-4">Powerful Intelligence. Effortless Control.</h2>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 text-white transition-colors duration-300">
+              Powerful Intelligence. Effortless Control.
+              </h2>
           </div>
-          <div className="text-right">
-            <p className="text-muted-foreground text-lg">Get a real-time view of how users interact with your software</p>
+          <div className="text-right justify-end">
+            <p className="text-lg sm:text-xl max-w-3xl mx-auto leading-relaxed text-white opacity-70 transition-colors duration-300">
+              Get a real-time view of how users interact with your software
+              </p>
           </div>
         </div>
           {/* Costumization Columns */}
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 mb-24">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 mb-24">
           {/* Left Column - New Tab Navigation */}
-          <div className="h-fit flex flex-col items-center justify-center">
+          <div className="h-full flex flex-col items-center justify-center">
             
             <Accordion
               type="single"
@@ -58,42 +62,46 @@ export default function How() {
               defaultValue="analytics"
             >
               <AccordionItem value="analytics">
-                <AccordionTrigger className="px-4">
+                <AccordionTrigger className="px-4 mb-8">
                   <div className="flex items-center gap-3">
                     <IconChartBar className="w-4 h-4" />
-                    <span className="font-medium">Analytics</span>
+                    <span className="text-2xl lg:text-3xl text-white mb-4 transition-colors duration-300">Analytics</span>
                   </div>
                 </AccordionTrigger>
-                <AccordionContent className="px-4">
-                  <p className="text-sm text-muted-foreground leading-relaxed">
+                <AccordionContent className="px-4 mb-8">
+                  <p className="text-lg sm:text-xl max-w-3xl mx-auto leading-relaxed text-white opacity-70 transition-colors duration-300">
                     Get a real-time view of how users interact with your software.
                   </p>
                 </AccordionContent>
               </AccordionItem>
 
               <AccordionItem value="insights">
-                <AccordionTrigger className="px-4">
+                <AccordionTrigger className="px-4 mb-8">
                   <div className="flex items-center gap-3">
                     <IconInnerShadowTop className="w-4 h-4" />
-                    <span className="font-medium">Insights</span>
+                    <span className="text-2xl lg:text-3xl text-white mb-4 transition-colors duration-300">
+                      Insights
+                    </span>
                   </div>
                 </AccordionTrigger>
-                <AccordionContent className="px-4">
-                  <p className="text-sm text-muted-foreground leading-relaxed">
+                <AccordionContent className="px-4 mb-8">
+                  <p className="text-lg sm:text-xl max-w-3xl mx-auto leading-relaxed text-white opacity-70 transition-colors duration-300">
                     Get actionable feedback, Topics and bottlenecks
                   </p>
                 </AccordionContent>
               </AccordionItem>
 
               <AccordionItem value="build">
-                <AccordionTrigger className="px-4">
+                <AccordionTrigger className="px-4 mb-8">
                   <div className="flex items-center gap-3">
                     <IconFileAi className="w-4 h-4" />
-                    <span className="font-medium">Build</span>
+                    <span className="text-2xl lg:text-3xl text-white mb-4 transition-colors duration-300">
+                      Build
+                      </span>
                   </div>
                 </AccordionTrigger>
-                <AccordionContent className="px-4">
-                  <p className="text-sm text-muted-foreground leading-relaxed">
+                <AccordionContent className="px-4 mb-8">
+                  <p className="text-lg sm:text-xl max-w-3xl mx-auto leading-relaxed text-white opacity-70 transition-colors duration-300">
                     Customize agent behaviors, define goals, Knowledge base and workflows
                   </p>
                 </AccordionContent>

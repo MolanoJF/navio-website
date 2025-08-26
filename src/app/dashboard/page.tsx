@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { AppSidebar } from "@/components/dashboard/app-sidebar"
 import { SiteHeader } from "@/components/dashboard/site-header"
 import { AnalyticsModule } from "@/components/dashboard/analytics-module"
@@ -14,6 +14,17 @@ import {
 
 export default function DashboardPage() {
   const [activeModule, setActiveModule] = useState("analytics")
+
+  // Force light theme for dashboard
+  useEffect(() => {
+    const htmlElement = document.documentElement
+    htmlElement.classList.remove('dark')
+    
+    // Restore dark theme when component unmounts
+    return () => {
+      htmlElement.classList.add('dark')
+    }
+  }, [])
 
   const handleModuleChange = (module: string) => {
     setActiveModule(module)

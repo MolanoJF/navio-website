@@ -50,8 +50,8 @@ export default function What() {
     <section id="features" className="py-24 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+        <div className="text-center mb-10">
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-4">
             From "How do I...?" to "Done."
           </h2>
           <p className="text-lg sm:text-xl text-foreground/70 max-w-3xl mx-auto leading-relaxed">
@@ -73,7 +73,7 @@ export default function What() {
                   className="bg-background dark:data-[state=active]:bg-background relative z-10 rounded-none border-0 data-[state=active]:shadow-none px-6 py-3 h-14 text-base font-medium"
                 >
                   {tab.icon}
-                  {tab.name}
+                  <h4 className="text-3xl font-bold">{tab.name}</h4>
                 </TabsTrigger>
               ))}
 
@@ -89,9 +89,9 @@ export default function What() {
             {tabs.map(tab => (
               <TabsContent key={tab.value} value={tab.value} className="space-y-6">
                                <div className="text-center mb-6">
-                 <h3 className="text-xl font-medium text-foreground/80">
+                 <p className="text-lg sm:text-xl text-foreground/70 max-w-3xl mx-auto leading-relaxed">
                    {tab.description}
-                 </h3>
+                 </p>
                </div>
                 <div className="w-full">
                   <div className="aspect-video bg-gradient-to-br from-primary/10 to-accent/10 rounded-2xl border border-border/50 overflow-hidden">
