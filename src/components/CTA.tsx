@@ -35,13 +35,9 @@ export default function CTA() {
             <h3 className="text-3xl lg:text-4xl font-bold text-white mb-6 leading-tight">
               faster and easier.
             </h3>
-            <Button 
-              size="lg" 
-              className="bg-transparent border-2 border-gradient-to-r from-orange-400 via-pink-500 to-blue-500 text-white hover:bg-white/10 transition-all duration-300 px-8 py-3 rounded-full" 
-              asChild
-            >
+            <Button type="button" size="lg" className="text-xl px-12 py-4 h-16 relative z-10 font-semibold rounded-full btn-3d" asChild>
               <Link href="/dashboard">
-                TRY NOW
+                Try Now
               </Link>
             </Button>
           </div>
