@@ -251,76 +251,7 @@ function InteractionsAnalytics({ timeRange, setTimeRange }: { timeRange: string;
         </CardContent>
       </Card>
 
-      {/* Engagement Metrics */}
-      <div className="grid gap-4 md:grid-cols-2">
-        <Card>
-          <CardHeader>
-            <CardTitle>User Engagement</CardTitle>
-            <CardDescription>Session duration and return rates</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="space-y-2">
-              <div className="flex justify-between text-sm">
-                <span>Avg Session Duration</span>
-                <span className="font-medium">4.2 minutes</span>
-              </div>
-              <Progress value={84} className="h-2" />
-            </div>
-            <div className="space-y-2">
-              <div className="flex justify-between text-sm">
-                <span>Return Rate</span>
-                <span className="font-medium">67%</span>
-              </div>
-              <Progress value={67} className="h-2" />
-            </div>
-            <div className="space-y-2">
-              <div className="flex justify-between text-sm">
-                <span>Task Completion</span>
-                <span className="font-medium">89%</span>
-              </div>
-              <Progress value={89} className="h-2" />
-            </div>
-          </CardContent>
-        </Card>
 
-        <Card>
-          <CardHeader>
-            <CardTitle>Interaction Types</CardTitle>
-            <CardDescription>Breakdown by interaction category</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-3">
-              <div className="flex justify-between items-center">
-                <span className="text-sm">Guided Questions</span>
-                <div className="flex items-center gap-2">
-                  <div className="w-16 bg-secondary rounded-full h-2">
-                    <div className="bg-primary h-2 rounded-full" style={{ width: '45%' }}></div>
-                  </div>
-                  <span className="text-sm font-medium">45%</span>
-                </div>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-sm">Completed Workflows</span>
-                <div className="flex items-center gap-2">
-                  <div className="w-16 bg-secondary rounded-full h-2">
-                    <div className="bg-chart-2 h-2 rounded-full" style={{ width: '38%' }}></div>
-                  </div>
-                  <span className="text-sm font-medium">38%</span>
-                </div>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-sm">Direct Queries</span>
-                <div className="flex items-center gap-2">
-                  <div className="w-16 bg-secondary rounded-full h-2">
-                    <div className="bg-chart-3 h-2 rounded-full" style={{ width: '17%' }}></div>
-                  </div>
-                  <span className="text-sm font-medium">17%</span>
-                </div>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
     </div>
   )
 }

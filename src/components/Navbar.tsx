@@ -56,6 +56,7 @@ export default function Navbar() {
             </NavbarButton>
             <NavbarButton
               variant="primary"
+
               className="hidden sm:inline-flex px-4 py-2 text-sm font-medium btn-3d"
             >
               Try Now
