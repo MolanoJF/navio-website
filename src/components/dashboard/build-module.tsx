@@ -206,9 +206,9 @@ function DataTable<TData, TValue>({
   })
 
   return (
-    <div className="w-full">
-      <div className="overflow-hidden rounded-md border bg-card">
-        <Table>
+    <div className="w-full max-w-full">
+      <div className="overflow-x-auto rounded-md border bg-card">
+        <Table className="w-full table-auto">
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup: any) => (
               <TableRow key={headerGroup.id}>
@@ -304,7 +304,7 @@ const knowledgeSourcesColumns: ColumnDef<KnowledgeSourceRow>[] = [
   {
     accessorKey: "source",
     header: "Source",
-    cell: ({ row }: { row: any }) => <span className="text-muted-foreground">{row.original.source}</span>,
+    cell: ({ row }: { row: any }) => <span className="text-muted-foreground whitespace-normal break-words">{row.original.source}</span>,
   },
 
   {
@@ -343,7 +343,7 @@ const rulesColumns: ColumnDef<RuleRow>[] = [
   {
     accessorKey: "trigger",
     header: "Trigger Condition",
-    cell: ({ row }) => <span className="whitespace-normal max-w-[300px] block">{row.original.trigger}</span>,
+    cell: ({ row }) => <span className="whitespace-normal break-words max-w-xs">{row.original.trigger}</span>,
   },
 ]
 
@@ -545,10 +545,12 @@ function KnowledgeBaseView() {
         </Button>
       </div>
 
-             <DataTable<KnowledgeSourceRow, unknown>
-         tableColumns={knowledgeSourcesColumns}
-         data={knowledgeBaseSources as KnowledgeSourceRow[]}
-       />
+             <div className="overflow-x-auto">
+               <DataTable<KnowledgeSourceRow, unknown>
+                 tableColumns={knowledgeSourcesColumns}
+                 data={knowledgeBaseSources as KnowledgeSourceRow[]}
+               />
+             </div>
 
       {/* Rules Table (DataTable) */}
             {/* Header */}
@@ -561,10 +563,12 @@ function KnowledgeBaseView() {
           Add Rule
         </Button>
       </div>
-             <DataTable<RuleRow, unknown>
-         tableColumns={rulesColumns}
-         data={rules as RuleRow[]}
-       />
+             <div className="overflow-x-auto">
+               <DataTable<RuleRow, unknown>
+                 tableColumns={rulesColumns}
+                 data={rules as RuleRow[]}
+               />
+             </div>
       
     </div>
   )

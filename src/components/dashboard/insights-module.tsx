@@ -175,9 +175,9 @@ function DataTable<TData, TValue>({
   })
 
   return (
-    <div className="w-full">
-      <div className="overflow-hidden rounded-md border bg-card">
-        <Table>
+    <div className="w-full max-w-full">
+      <div className="overflow-x-auto rounded-md border bg-card">
+        <Table className="w-full table-auto">
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup: any) => (
               <TableRow key={headerGroup.id}>
@@ -299,7 +299,7 @@ const bottlenecksColumns: ColumnDef<BottleneckRow>[] = [
   {
     accessorKey: "primaryIssues",
     header: "Primary Issues",
-    cell: ({ row }) => <span className="text-sm">{row.original.primaryIssues}</span>,
+    cell: ({ row }) => <span className="text-sm whitespace-normal break-words">{row.original.primaryIssues}</span>,
   },
   {
     id: "actions",
@@ -438,10 +438,12 @@ function WorkflowsInsights() {
       </div>
 
       {/* Detailed Workflow Analysis */}
-      <DataTable<WorkflowRow, unknown>
-            tableColumns={workflowColumns}
-            data={frequentWorkflows as WorkflowRow[]}
-          />
+      <div className="overflow-x-auto">
+        <DataTable<WorkflowRow, unknown>
+              tableColumns={workflowColumns}
+              data={frequentWorkflows as WorkflowRow[]}
+            />
+      </div>
 
 
       {/* User Journey Visualization */}
@@ -505,10 +507,12 @@ function BottlenecksInsights() {
       </div>
 
       {/* Detailed Bottleneck Analysis */}
-      <DataTable<BottleneckRow, unknown>
-            tableColumns={bottlenecksColumns}
-            data={bottlenecks as BottleneckRow[]}
-          />
+      <div className="overflow-x-auto">
+        <DataTable<BottleneckRow, unknown>
+              tableColumns={bottlenecksColumns}
+              data={bottlenecks as BottleneckRow[]}
+            />
+      </div>
     </div>
   )
 }

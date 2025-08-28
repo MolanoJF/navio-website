@@ -345,8 +345,8 @@ function ChatLogsView() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="rounded-md border">
-            <Table>
+          <div className="overflow-x-auto rounded-md border">
+            <Table className="w-full table-auto">
               <TableHeader>
                 <TableRow>
                   <TableHead>User</TableHead>
@@ -357,7 +357,7 @@ function ChatLogsView() {
                   <TableHead>Quality</TableHead>
                   <TableHead>Status</TableHead>
                   <TableHead>Resolution</TableHead>
-                  <TableHead className="w-[70px]">Actions</TableHead>
+                  <TableHead className="p-4 min-w-0 w-[70px]">Actions</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -367,14 +367,14 @@ function ChatLogsView() {
                       <div className="flex items-center gap-2">
                         <User className="h-4 w-4 text-muted-foreground" />
                         <div>
-                          <div className="font-medium">{log.userName}</div>
-                          <div className="text-xs text-muted-foreground">{log.userEmail}</div>
+                          <div className="font-medium whitespace-normal break-words">{log.userName}</div>
+                          <div className="text-xs text-muted-foreground whitespace-normal break-words">{log.userEmail}</div>
                         </div>
                       </div>
                     </TableCell>
                     <TableCell>
                       <div>
-                        <div className="font-medium">{log.topic}</div>
+                        <div className="font-medium whitespace-normal break-words">{log.topic}</div>
                         <div className="text-xs text-muted-foreground">
                           {new Date(log.startTime).toLocaleString()}
                         </div>
