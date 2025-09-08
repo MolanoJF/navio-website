@@ -3,17 +3,13 @@
 import * as React from "react"
 import { 
   Search, 
-  Filter, 
   Download, 
   MessageSquare, 
   User, 
-  Calendar,
-  Clock,
   ThumbsUp,
   ThumbsDown,
   AlertCircle,
   CheckCircle,
-  MoreHorizontal,
   Eye
 } from "lucide-react"
 
@@ -26,12 +22,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
 import { Input } from "@/components/ui/input"
 import {
   Select,
@@ -57,7 +47,6 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { Separator } from "@/components/ui/separator"
 
 // Mock data for chat logs
 const chatLogs = [
@@ -68,11 +57,7 @@ const chatLogs = [
     userEmail: "sarah.johnson@example.com",
     startTime: "2024-01-15T10:30:00Z",
     endTime: "2024-01-15T10:35:30Z",
-    duration: "5m 30s",
-    messages: 12,
     sentiment: "positive",
-    qualityScore: 4.5,
-    status: "completed",
     topic: "Password Reset",
     resolution: "Resolved",
     conversation: [
@@ -91,11 +76,7 @@ const chatLogs = [
     userEmail: "m.chen@company.com",
     startTime: "2024-01-15T11:15:00Z",
     endTime: "2024-01-15T11:22:15Z",
-    duration: "7m 15s",
-    messages: 18,
     sentiment: "neutral",
-    qualityScore: 3.8,
-    status: "completed",
     topic: "Feature Request",
     resolution: "Escalated",
     conversation: [
@@ -112,11 +93,7 @@ const chatLogs = [
     userEmail: "emma.d@startup.io",
     startTime: "2024-01-15T14:20:00Z",
     endTime: "2024-01-15T14:28:45Z",
-    duration: "8m 45s",
-    messages: 22,
     sentiment: "negative",
-    qualityScore: 2.1,
-    status: "abandoned",
     topic: "Technical Issue",
     resolution: "Unresolved",
     conversation: [
@@ -133,11 +110,7 @@ const chatLogs = [
     userEmail: "david@techcorp.com",
     startTime: "2024-01-15T15:45:00Z",
     endTime: "2024-01-15T15:51:20Z",
-    duration: "6m 20s",
-    messages: 14,
     sentiment: "positive",
-    qualityScore: 4.8,
-    status: "completed",
     topic: "Account Setup",
     resolution: "Resolved",
     conversation: [
@@ -154,11 +127,7 @@ const chatLogs = [
     userEmail: "lisa.wong@design.co",
     startTime: "2024-01-15T16:30:00Z",
     endTime: "2024-01-15T16:35:10Z",
-    duration: "5m 10s",
-    messages: 10,
     sentiment: "positive",
-    qualityScore: 4.2,
-    status: "completed",
     topic: "Billing Inquiry",
     resolution: "Resolved",
     conversation: [
@@ -186,14 +155,6 @@ const getSentimentIcon = (sentiment: string) => {
   }
 }
 
-const getStatusColor = (status: string) => {
-  switch (status) {
-    case 'completed': return 'bg-green-100 text-green-800'
-    case 'abandoned': return 'bg-red-100 text-red-800'
-    default: return 'bg-yellow-100 text-yellow-800'
-  }
-}
-
 interface ActivityModuleProps {
   activeSubModule?: string
 }
@@ -208,16 +169,14 @@ function ChatLogsView() {
   const [selectedConversation, setSelectedConversation] = React.useState<string | null>(null)
   const [searchTerm, setSearchTerm] = React.useState("")
   const [sentimentFilter, setSentimentFilter] = React.useState("all")
-  const [statusFilter, setStatusFilter] = React.useState("all")
 
   const filteredLogs = chatLogs.filter(log => {
     const matchesSearch = log.userName.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          log.topic.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          log.userEmail.toLowerCase().includes(searchTerm.toLowerCase())
     const matchesSentiment = sentimentFilter === "all" || log.sentiment === sentimentFilter
-    const matchesStatus = statusFilter === "all" || log.status === statusFilter
     
-    return matchesSearch && matchesSentiment && matchesStatus
+    return matchesSearch && matchesSentiment
   })
 
   const selectedLog = chatLogs.find(log => log.id === selectedConversation)
@@ -257,18 +216,6 @@ function ChatLogsView() {
               </SelectContent>
             </Select>
             
-            <Select value={statusFilter} onValueChange={setStatusFilter}>
-              <SelectTrigger className="w-[140px]">
-                <SelectValue placeholder="Status" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All Status</SelectItem>
-                <SelectItem value="completed">Completed</SelectItem>
-                <SelectItem value="abandoned">Abandoned</SelectItem>
-                <SelectItem value="ongoing">Ongoing</SelectItem>
-              </SelectContent>
-            </Select>
-            
             <Button variant="outline" size="sm">
               <Download className="h-4 w-4 mr-2" />
               Export
@@ -278,7 +225,7 @@ function ChatLogsView() {
       </div>
 
       {/* Activity Summary Cards */}
-      <div className="grid gap-4 md:grid-cols-4">
+      <div className="grid gap-4 md:grid-cols-2">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Conversations</CardTitle>
@@ -288,21 +235,6 @@ function ChatLogsView() {
             <div className="text-2xl font-bold">{chatLogs.length}</div>
             <p className="text-xs text-muted-foreground">
               Today's activity
-            </p>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Avg Quality Score</CardTitle>
-            <ThumbsUp className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">
-              {(chatLogs.reduce((sum, log) => sum + log.qualityScore, 0) / chatLogs.length).toFixed(1)}
-            </div>
-            <p className="text-xs text-muted-foreground">
-              Out of 5.0
             </p>
           </CardContent>
         </Card>
@@ -321,19 +253,6 @@ function ChatLogsView() {
             </p>
           </CardContent>
         </Card>
-
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Avg Duration</CardTitle>
-            <Clock className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">6m 32s</div>
-            <p className="text-xs text-muted-foreground">
-              Per conversation
-            </p>
-          </CardContent>
-        </Card>
       </div>
 
       {/* Chat Logs Table */}
@@ -346,18 +265,14 @@ function ChatLogsView() {
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto rounded-md border">
-            <Table className="w-full table-auto">
+            <Table className="w-full table-fixed">
               <TableHeader>
                 <TableRow>
-                  <TableHead>User</TableHead>
-                  <TableHead>Topic</TableHead>
-                  <TableHead>Duration</TableHead>
-                  <TableHead>Messages</TableHead>
-                  <TableHead>Sentiment</TableHead>
-                  <TableHead>Quality</TableHead>
-                  <TableHead>Status</TableHead>
-                  <TableHead>Resolution</TableHead>
-                  <TableHead className="p-4 min-w-0 w-[70px]">Actions</TableHead>
+                  <TableHead style={{width: "30%"}}>User</TableHead>
+                  <TableHead style={{width: "20%"}}>Topic</TableHead>
+                  <TableHead style={{width: "15%"}}>Sentiment</TableHead>
+                  <TableHead style={{width: "15%"}}>Resolution</TableHead>
+                  <TableHead style={{width: "10%"}}>Actions</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -367,36 +282,23 @@ function ChatLogsView() {
                       <div className="flex items-center gap-2">
                         <User className="h-4 w-4 text-muted-foreground" />
                         <div>
-                          <div className="font-medium whitespace-normal break-words">{log.userName}</div>
-                          <div className="text-xs text-muted-foreground whitespace-normal break-words">{log.userEmail}</div>
+                          <div className="font-medium whitespace-pre-wrap break-words">{log.userName}</div>
+                          <div className="text-xs text-muted-foreground whitespace-pre-wrap break-words">{log.userEmail}</div>
                         </div>
                       </div>
                     </TableCell>
                     <TableCell>
                       <div>
-                        <div className="font-medium whitespace-normal break-words">{log.topic}</div>
+                        <div className="font-medium whitespace-pre-wrap break-words">{log.topic}</div>
                         <div className="text-xs text-muted-foreground">
                           {new Date(log.startTime).toLocaleString()}
                         </div>
                       </div>
                     </TableCell>
-                    <TableCell>{log.duration}</TableCell>
-                    <TableCell>{log.messages}</TableCell>
                     <TableCell>
                       <Badge variant="outline" className={getSentimentColor(log.sentiment)}>
                         {getSentimentIcon(log.sentiment)}
                         <span className="ml-1 capitalize">{log.sentiment}</span>
-                      </Badge>
-                    </TableCell>
-                    <TableCell>
-                      <div className="flex items-center gap-1">
-                        <span className="font-medium">{log.qualityScore}</span>
-                        <span className="text-xs text-muted-foreground">/5</span>
-                      </div>
-                    </TableCell>
-                    <TableCell>
-                      <Badge className={getStatusColor(log.status)}>
-                        {log.status}
                       </Badge>
                     </TableCell>
                     <TableCell>
@@ -431,14 +333,6 @@ function ChatLogsView() {
                                 <div>
                                   <p className="text-sm font-medium">User</p>
                                   <p className="text-sm text-muted-foreground">{selectedLog.userName}</p>
-                                </div>
-                                <div>
-                                  <p className="text-sm font-medium">Duration</p>
-                                  <p className="text-sm text-muted-foreground">{selectedLog.duration}</p>
-                                </div>
-                                <div>
-                                  <p className="text-sm font-medium">Quality Score</p>
-                                  <p className="text-sm text-muted-foreground">{selectedLog.qualityScore}/5</p>
                                 </div>
                                 <div>
                                   <p className="text-sm font-medium">Resolution</p>

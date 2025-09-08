@@ -177,13 +177,13 @@ function DataTable<TData, TValue>({
   return (
     <div className="w-full max-w-full">
       <div className="overflow-x-auto rounded-md border bg-card">
-        <Table className="w-full table-auto">
+        <Table className="w-full table-fixed">
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup: any) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header: any) => {
                   return (
-                    <TableHead key={header.id}>
+                    <TableHead key={header.id} style={{width: header.getSize()}}>
                       {header.isPlaceholder
                         ? null
                         : flexRender(header.column.columnDef.header, header.getContext())}
@@ -256,6 +256,7 @@ const bottlenecksColumns: ColumnDef<BottleneckRow>[] = [
         <div className="text-sm text-muted-foreground">{row.original.stepName}</div>
       </div>
     ),
+    size: 20,
   },
   {
     accessorKey: "severity",
@@ -275,6 +276,7 @@ const bottlenecksColumns: ColumnDef<BottleneckRow>[] = [
         {row.original.severity}
       </Badge>
     ),
+    size: 15,
   },
   {
     accessorKey: "dropOffRate",
@@ -285,31 +287,14 @@ const bottlenecksColumns: ColumnDef<BottleneckRow>[] = [
       </Button>
     ),
     cell: ({ row }) => <span>{row.original.dropOffRate}</span>,
-  },
-  {
-    accessorKey: "avgTimeStuck",
-    header: ({ column }: { column: any }) => (
-      <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
-        Avg Time Stuck
-        <ArrowUpDown className="ml-2 h-4 w-4" />
-      </Button>
-    ),
-    cell: ({ row }) => <span>{row.original.avgTimeStuck}</span>,
+    size: 15,
   },
   {
     accessorKey: "primaryIssues",
     header: "Primary Issues",
-    cell: ({ row }) => <span className="text-sm whitespace-normal break-words">{row.original.primaryIssues}</span>,
-  },
-  {
-    id: "actions",
-    header: "",
-    cell: () => (
-      <Button variant="outline" size="sm">View details</Button>
-    ),
-    enableSorting: false,
-    enableHiding: false,
-  },
+    cell: ({ row }) => <span className="text-sm whitespace-pre-wrap break-words">{row.original.primaryIssues}</span>,
+    size: 50,
+  }
 ]
 
 const workflowColumns: ColumnDef<WorkflowRow>[] = [
@@ -322,6 +307,7 @@ const workflowColumns: ColumnDef<WorkflowRow>[] = [
       </Button>
     ),
     cell: ({ row }) => <span className="font-medium">{row.original.name}</span>,
+    size: 60,
   },
   {
     accessorKey: "usage",
@@ -332,15 +318,7 @@ const workflowColumns: ColumnDef<WorkflowRow>[] = [
       </Button>
     ),
     cell: ({ row }) => <span>{row.original.usage.toLocaleString()}</span>,
-  },
-  {
-    accessorKey: "avgTime",
-    header: ({ column }: { column: any }) => (
-      <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
-        Avg Time
-        <ArrowUpDown className="ml-2 h-4 w-4" />
-      </Button>
-    ),
+    size: 20,
   },
   {
     accessorKey: "completion",
@@ -356,6 +334,7 @@ const workflowColumns: ColumnDef<WorkflowRow>[] = [
         <Progress value={row.original.completion} className="w-16 h-2" />
       </div>
     ),
+    size: 20,
   },
 
 ]
@@ -480,6 +459,8 @@ function WorkflowsInsights() {
   )
 }
 
+import Image from "next/image"
+
 function BottlenecksInsights() {
   return (
     <div className="flex flex-col gap-6">
@@ -505,6 +486,23 @@ function BottlenecksInsights() {
           </Select>
         </div>
       </div>
+
+      {/* Sankey Diagram */}
+      <Card>
+        <CardHeader>
+          <CardTitle>User Flow Analysis</CardTitle>
+        </CardHeader>
+        <CardContent className="p-0">
+          <Image
+            src="/NAVIO SANKEY-01.png"
+            alt="Sankey Diagram"
+            layout="responsive"
+            width={1200}
+            height={400}
+            className="rounded-lg"
+          />
+        </CardContent>
+      </Card>
 
       {/* Detailed Bottleneck Analysis */}
       <div className="overflow-x-auto">

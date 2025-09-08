@@ -330,50 +330,7 @@ function PerformanceAnalytics() {
         </Card>
       </div>
 
-      {/* Performance Chart */}
-      <Card>
-        <CardHeader>
-          <CardTitle>System Performance</CardTitle>
-          <CardDescription>
-            Success rates, error tracking, and response times
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <ChartContainer
-            config={chartConfig}
-            className="aspect-auto h-[300px] w-full"
-          >
-            <LineChart data={performanceData}>
-              <CartesianGrid vertical={false} />
-              <XAxis
-                dataKey="date"
-                tickLine={false}
-                axisLine={false}
-                tickMargin={8}
-                tickFormatter={(value) => {
-                  const date = new Date(value)
-                  return date.toLocaleDateString("en-US", {
-                    month: "short",
-                    day: "numeric",
-                  })
-                }}
-              />
-              <ChartTooltip
-                cursor={false}
-                content={<ChartTooltipContent />}
-              />
-              <Line
-                dataKey="successRate"
-                type="monotone"
-                stroke="var(--color-successRate)"
-                strokeWidth={2}
-                dot={false}
-              />
-            </LineChart>
-          </ChartContainer>
-        </CardContent>
-      </Card>
-
+  
       {/* Performance Metrics Grid */}
       <div className="grid gap-4 md:grid-cols-3">
         <Card>

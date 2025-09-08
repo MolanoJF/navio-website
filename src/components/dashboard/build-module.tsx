@@ -208,13 +208,13 @@ function DataTable<TData, TValue>({
   return (
     <div className="w-full max-w-full">
       <div className="overflow-x-auto rounded-md border bg-card">
-        <Table className="w-full table-auto">
+        <Table className="w-full table-fixed">
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup: any) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header: any) => {
                   return (
-                    <TableHead key={header.id}>
+                    <TableHead key={header.id} style={{width: header.getSize()}}>
                       {header.isPlaceholder
                         ? null
                         : flexRender(header.column.columnDef.header, header.getContext())}
@@ -290,6 +290,7 @@ const knowledgeSourcesColumns: ColumnDef<KnowledgeSourceRow>[] = [
         <span className="capitalize">{row.original.type}</span>
       </div>
     ),
+    size: 15,
   },
   {
     accessorKey: "name",
@@ -300,16 +301,19 @@ const knowledgeSourcesColumns: ColumnDef<KnowledgeSourceRow>[] = [
       </Button>
     ),
     cell: ({ row }: { row: any }) => <span className="font-medium">{row.original.name}</span>,
+    size: 35,
   },
   {
     accessorKey: "source",
     header: "Source",
-    cell: ({ row }: { row: any }) => <span className="text-muted-foreground whitespace-normal break-words">{row.original.source}</span>,
+    cell: ({ row }: { row: any }) => <span className="text-muted-foreground whitespace-pre-wrap break-words">{row.original.source}</span>,
+    size: 35,
   },
 
   {
     accessorKey: "lastUpdated",
     header: "Last Updated",
+    size: 15,
   },
 ]
 
@@ -323,7 +327,8 @@ const rulesColumns: ColumnDef<RuleRow>[] = [
         <ArrowUpDown className="ml-2 h-4 w-4" />
       </Button>
     ),
-    cell: ({ row }) => <span className="font-medium">{row.original.rule}</span>,
+    cell: ({ row }) => <span className="font-medium whitespace-pre-wrap break-words">{row.original.rule}</span>,
+    size: 40,
   },
   {
     accessorKey: "goalType",
@@ -338,12 +343,14 @@ const rulesColumns: ColumnDef<RuleRow>[] = [
         {row.original.goalType}
       </Badge>
     ),
+    size: 20,
   },
 
   {
     accessorKey: "trigger",
     header: "Trigger Condition",
-    cell: ({ row }) => <span className="whitespace-normal break-words max-w-xs">{row.original.trigger}</span>,
+    cell: ({ row }) => <span className="whitespace-pre-wrap break-words max-w-xs">{row.original.trigger}</span>,
+    size: 40,
   },
 ]
 
