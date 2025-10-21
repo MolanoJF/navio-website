@@ -23,7 +23,7 @@ const tabs = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
       </svg>
     ),
-    description: 'Autopilot navigates, clicks, and completes workflows intelligently, from start to finish.'
+    description: 'Navio autonomously completes entire tasks for users, from start to finish. '
   }
 ]
 
@@ -55,7 +55,7 @@ export default function What() {
             From "How do I...?" to "Done."
           </h2>
           <p className="text-lg sm:text-xl text-foreground/70 max-w-3xl mx-auto leading-relaxed">
-          Users tell Sailbot what they need, and it guides them step-by-step or gets it done—right inside your app..
+          Navio instantly resolves user issues by guiding them step-by-step or completing tasks automatically, right inside your app.
           </p>
         </div>
 

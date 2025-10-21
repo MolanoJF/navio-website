@@ -24,23 +24,19 @@ export default function CTA() {
         <div className="flex flex-col lg:flex-row items-start justify-between max-w-6xl mx-auto">
           {/* Left Side Text - Positioned Higher */}
           <div className="text-left mb-8 lg:mb-0 lg:flex-1 lg:pt-8">
-            <h2 className="text-4xl lg:text-5xl font-bold text-white leading-tight">
-              Organize your<br />
-              dev universe,
+            <h2 className="text-4xl lg:text-5xl font-bold text-white leading-tight mb-8">
+              Intelligence that lives<br />
+              inside your app.
             </h2>
+            <div className="flex justify-start mt-8 ml-16">
+              <Button type="button" size="lg" className="text-xl px-12 py-4 h-16 relative z-10 font-semibold rounded-full btn-3d" asChild>
+                <Link href="/dashboard">
+                  Try Now
+                </Link>
+              </Button>
+            </div>
           </div>
 
-          {/* Right Side Text and CTA - Positioned Lower */}
-          <div className="text-right lg:flex-1 lg:pt-60">
-            <h3 className="text-3xl lg:text-4xl font-bold text-white mb-6 leading-tight">
-              faster and easier.
-            </h3>
-            <Button type="button" size="lg" className="text-xl px-12 py-4 h-16 relative z-10 font-semibold rounded-full btn-3d" asChild>
-              <Link href="/dashboard">
-                Try Now
-              </Link>
-            </Button>
-          </div>
         </div>
       </div>
     </section>

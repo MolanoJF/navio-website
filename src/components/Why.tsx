@@ -45,7 +45,7 @@ export default function Why() {
                 Double User Activation
               </h3>
               <p className="leading-relaxed text-white opacity-70 transition-colors duration-300">
-              Eliminate the learning curve and drastically reduce time-to-value. Convert new sign-ups into deeply engaged, paying customers faster than ever before.
+              Eliminate the learning curve and drastically reduce time-to-value. Convert new sign-ups into engaged, paying customers faster ever.
               </p>
             </div>
             <div className="relative w-full h-50 sm:h-80">

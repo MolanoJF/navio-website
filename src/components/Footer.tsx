@@ -14,14 +14,16 @@ export default function Footer() {
           <div className="lg:col-span-2">
             <div className="mb-6">
               <h3 className="text-2xl font-bold text-foreground tracking-tight mb-4">
-                SAIL
+                NAVIO
               </h3>
               <p className="text-foreground/70 text-base leading-relaxed max-w-md mb-6">
-                The intelligent layer that understands your app, enabling users to get guidance, take action, or automate entire workflows—right inside your product.
+                The intelligent layer that understands your app, helping users get guidance or automate entire workflows right inside your product.
               </p>
               
               {/* Social Media Links - Moved here under brand description */}
               <div className="flex items-center gap-4">
+
+                
                 <a 
                   href="#twitter" 
                   className="text-foreground/60 hover:text-foreground transition-colors duration-200"
@@ -123,7 +125,7 @@ export default function Footer() {
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             {/* Copyright */}
             <div className="text-foreground/60 text-sm">
-              © 2024 SAIL. All rights reserved.
+              © 2025 NAVIO. All rights reserved.
             </div>
 
             {/* Legal Links Only - Social links moved to brand section */}
