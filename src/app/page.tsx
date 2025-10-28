@@ -14,8 +14,8 @@ export default function Home() {
       <What />
       <Why />
       <How />
-      <CTA />
       <Footer />
+      <CTA />
     </main>
   )
 }

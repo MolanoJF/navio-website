@@ -50,10 +50,11 @@ export default function How() {
               </p>
           </div>
         </div>
+
           {/* Costumization Columns */}
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 mb-24">
+        {/*<div className="grid grid-cols-1 lg:grid-cols-5 gap-12 mb-24">
           {/* Left Column - New Tab Navigation */}
-          <div className="h-full flex flex-col items-center justify-center">
+          {/*<div className="h-full flex flex-col items-center justify-center">
             
             <Accordion
               type="single"
@@ -110,7 +111,7 @@ export default function How() {
           </div>
 
           {/* Main How Content */}
-          <div className="lg:col-span-4">
+          {/*<div className="lg:col-span-4">
             <div className="bg-card rounded-lg border shadow-lg overflow-hidden h-[85vh]">
               <PanelGroup direction="horizontal">
                 <Panel defaultSize={100} className="h-full">
@@ -124,10 +125,10 @@ export default function How() {
               </PanelGroup>
             </div>
           </div>
-        </div>
+        </div> */} 
 
         {/* Horizontal Separator between How and Integration */}
-        <div className="w-full h-px bg-border"></div>
+        {/*<div className="w-full h-px bg-border"></div> */}
 
         {/* 2-Card Layout with Separator */}
         <div className="grid md:grid-cols-2 gap-0 relative">

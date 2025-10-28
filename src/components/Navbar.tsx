@@ -18,9 +18,9 @@ export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   const navItems = [
-    { name: "Product", link: "/#features" },
-    { name: "Pricing", link: "/pricing" },
-    { name: "Resources", link: "#resources" },
+    // { name: "Product", link: "/#features" },
+    // { name: "Pricing", link: "/pricing" },
+    // { name: "Resources", link: "#resources" },
   ]
 
   const toggleMobileMenu = () => {
@@ -37,7 +37,7 @@ export default function Navbar() {
         {/* Desktop Navbar */}
         <NavBody>
           {/* Logo */}
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0 z-20">
             <Link href="/" className="text-2xl lg:text-3xl text-foreground tracking-tight hover:opacity-40 transition-opacity">
               NAVIO
             </Link>
@@ -48,12 +48,13 @@ export default function Navbar() {
 
           {/* CTA Buttons */}
           <div className="flex items-center space-x-3">
-            <NavbarButton
+            {/* <NavbarButton
               variant="secondary"
               className="hidden sm:inline-flex px-4 py-2 text-sm font-medium"
             >
               Sign in
-            </NavbarButton>
+            </NavbarButton> */}
+            <Link href="https://cal.com/navio-owdjpk/navio-demo">
             <NavbarButton
               variant="primary"
 
@@ -61,6 +62,7 @@ export default function Navbar() {
             >
               Try Now
             </NavbarButton>
+            </Link>
           </div>
         </NavBody>
 
@@ -68,7 +70,7 @@ export default function Navbar() {
         <MobileNav>
           <MobileNavHeader>
             {/* Logo */}
-            <div className="flex-shrink-0">
+            <div className="flex-shrink-0 z-20">
               <Link href="/" className="text-2xl font-bold text-foreground tracking-tight hover:opacity-80 transition-opacity">
                 NAVIO
               </Link>
@@ -91,12 +93,14 @@ export default function Navbar() {
               </a>
             ))}
             <div className="flex flex-col space-y-2 pt-4">
-              <Button variant="ghost" size="sm" onClick={closeMobileMenu}>
+              {/* <Button variant="ghost" size="sm" onClick={closeMobileMenu}>
                 Sign in
-              </Button>
+              </Button> */}
+              <Link href="https://cal.com/navio-owdjpk/navio-demo">
               <Button size="sm" onClick={closeMobileMenu}>
                 Try Now
               </Button>
+              </Link>
             </div>
           </MobileNavMenu>
         </MobileNav>

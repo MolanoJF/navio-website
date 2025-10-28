@@ -1,23 +1,23 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Separator } from "@/components/ui/separator"
+
 import Link from "next/link"
 
 export default function Footer() {
   return (
-    <footer className="bg-background border-t border-border/50">
+    <footer className="">
       {/* Main Footer Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="flex flex-col lg:flex-row justify-between">
           {/* Brand Section */}
-          <div className="lg:col-span-2">
-            <div className="mb-6">
-              <h3 className="text-2xl font-bold text-foreground tracking-tight mb-4">
+          <div>
+            <div className="mb-2">
+              <h3 className="text-4xl font-bold text-foreground tracking-tight mb-4">
                 NAVIO
               </h3>
               <p className="text-foreground/70 text-base leading-relaxed max-w-md mb-6">
-                The intelligent layer that understands your app, helping users get guidance or automate entire workflows right inside your product.
+                The intelligent layer your app, helping users get guidance or automate entire workflows.
               </p>
               
               {/* Social Media Links - Moved here under brand description */}
@@ -54,94 +54,74 @@ export default function Footer() {
               </div>
             </div>
           </div>
-
-          {/* Product Links */}
-          <div className="space-y-4">
-            <h4 className="text-lg font-semibold text-foreground">Product</h4>
-            <ul className="space-y-3">
-              <li>
-                <Link 
-                  href="/#features" 
-                  className="text-foreground/70 hover:text-foreground transition-colors duration-200"
-                >
-                  Features
-                </Link>
-              </li>
-              <li>
-                <Link 
-                  href="/pricing" 
-                  className="text-foreground/70 hover:text-foreground transition-colors duration-200"
-                >
-                  Pricing
-                </Link>
-              </li>
-              <li>
-                <a 
-                  href="#Resources" 
-                  className="text-foreground/70 hover:text-foreground transition-colors duration-200"
-                >
-                  Resources
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* Company Links */}
-          <div className="space-y-4">
-            <h4 className="text-lg font-semibold text-foreground">Company</h4>
-            <ul className="space-y-3">
-              <li>
-                <Link 
-                  href="/security" 
-                  className="text-foreground/70 hover:text-foreground transition-colors duration-200"
-                >
-                  Security
-                </Link>
-              </li>
-              <li>
-                <a 
-                  href="#careers" 
-                  className="text-foreground/70 hover:text-foreground transition-colors duration-200"
-                >
-                  Careers
-                </a>
-              </li>
-              <li>
-                <a 
-                  href="#contact" 
-                  className="text-foreground/70 hover:text-foreground transition-colors duration-200"
-                >
-                  Contact
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        {/* Bottom Section */}
-        <div className="mt-6 pt-6">
-          <Separator className="mb-6" />
-          
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            {/* Copyright */}
-            <div className="text-foreground/60 text-sm">
-              © 2025 NAVIO. All rights reserved.
+          <div className="grid grid-cols-3 gap-6">
+            {/* Product Links */}
+            <div className="space-y-4">
+              <h4 className="text-lg font-semibold text-foreground">Product</h4>
+              <ul className="space-y-3">
+                <li>
+                  <Link 
+                    href="/#How" 
+                    className="text-foreground/70 hover:text-foreground transition-colors duration-200"
+                  >
+                    Demo
+                  </Link>
+                </li>
+                <li>
+                  <a 
+                    href="#Resources" 
+                    className="text-foreground/70 hover:text-foreground transition-colors duration-200"
+                  >
+                    Features
+                  </a>
+                </li>
+              </ul>
             </div>
 
-            {/* Legal Links Only - Social links moved to brand section */}
-            <div className="flex items-center gap-4 text-sm">
-              <Link 
-                href="/privacy" 
-                className="text-foreground/60 hover:text-foreground transition-colors duration-200"
-              >
-                Privacy Policy
-              </Link>
-              <Link 
-                href="/terms" 
-                className="text-foreground/60 hover:text-foreground transition-colors duration-200"
-              >
-                Terms of Service
-              </Link>
+            {/* Company Links */}
+            <div className="space-y-4">
+              <h4 className="text-lg font-semibold text-foreground">Company</h4>
+              <ul className="space-y-3">
+                <li>
+                  <Link 
+                    href="/security" 
+                    className="text-foreground/70 hover:text-foreground transition-colors duration-200"
+                  >
+                    Security
+                  </Link>
+                </li>
+                <li>
+                  <a 
+                    href="#contact" 
+                    className="text-foreground/70 hover:text-foreground transition-colors duration-200"
+                  >
+                    Contact
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Resources Links */}
+            <div className="space-y-4">
+              <h4 className="text-lg font-semibold text-foreground">Resources</h4>
+              <ul className="space-y-3">
+                <li>
+                  <Link 
+                    href="/privacy" 
+                    className="text-foreground/70 hover:text-foreground transition-colors duration-200"
+                  >
+                    Privacy
+                  </Link>
+                </li>
+                <li>
+                  <Link 
+                    href="/terms" 
+                    className="text-foreground/70 hover:text-foreground transition-colors duration-200"
+                  >
+                    Terms
+                  </Link>
+                </li>
+              </ul>
             </div>
           </div>
         </div>

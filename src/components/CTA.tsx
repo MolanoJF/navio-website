@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 
 export default function CTA() {
   return (
-    <section className="min-h-screen pt-0 relative overflow-hidden">
+    <section className="min-h-[70vh] pt-0 relative overflow-hidden">
       {/* Video Background */}
       <video
         autoPlay
@@ -30,7 +30,7 @@ export default function CTA() {
             </h2>
             <div className="flex justify-start mt-8 ml-16">
               <Button type="button" size="lg" className="text-xl px-12 py-4 h-16 relative z-10 font-semibold rounded-full btn-3d" asChild>
-                <Link href="/dashboard">
+                <Link href="https://cal.com/navio-owdjpk/navio-demo">
                   Try Now
                 </Link>
               </Button>

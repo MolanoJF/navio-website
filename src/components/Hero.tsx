@@ -26,7 +26,7 @@ export default function Hero() {
           {/* CTA Button */}
           <div className="flex justify-center">
             <Button type="button" size="lg" className="text-xl px-12 py-4 h-16 relative z-10 font-semibold rounded-full btn-3d" asChild>
-              <Link href="/dashboard">
+              <Link href="https://cal.com/navio-owdjpk/navio-demo">
                 Try Now
               </Link>
             </Button>
