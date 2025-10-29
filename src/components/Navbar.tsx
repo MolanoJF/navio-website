@@ -18,9 +18,9 @@ export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   const navItems = [
-    // { name: "Product", link: "/#features" },
-    // { name: "Pricing", link: "/pricing" },
-    // { name: "Resources", link: "#resources" },
+    { name: "Product", link: "/#features" },
+    { name: "Pricing", link: "/pricing" },
+    { name: "Resources", link: "#resources" },
   ]
 
   const toggleMobileMenu = () => {
@@ -54,15 +54,13 @@ export default function Navbar() {
             >
               Sign in
             </NavbarButton> */}
-            <Link href="https://cal.com/navio-owdjpk/navio-demo">
             <NavbarButton
+              href="https://cal.com/navio-owdjpk/navio-demo"
               variant="primary"
-
               className="hidden sm:inline-flex px-4 py-2 text-sm font-medium btn-3d"
             >
               Try Now
             </NavbarButton>
-            </Link>
           </div>
         </NavBody>
 
@@ -96,11 +94,13 @@ export default function Navbar() {
               {/* <Button variant="ghost" size="sm" onClick={closeMobileMenu}>
                 Sign in
               </Button> */}
-              <Link href="https://cal.com/navio-owdjpk/navio-demo">
-              <Button size="sm" onClick={closeMobileMenu}>
+              <NavbarButton
+                href="https://cal.com/navio-owdjpk/navio-demo"
+                onClick={closeMobileMenu}
+                className="w-full text-center"
+              >
                 Try Now
-              </Button>
-              </Link>
+              </NavbarButton>
             </div>
           </MobileNavMenu>
         </MobileNav>

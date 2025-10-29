@@ -1,6 +1,6 @@
-# SAIL Website
+# Navio Website
 
-A premium, fully responsive landing page for **SAIL**, an AI-driven user onboarding and software intelligence platform.
+A premium, fully responsive landing page for **NAVIO**, an AI-driven user onboarding and software intelligence platform.
 
 ## 🚀 Features
 

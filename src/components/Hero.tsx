@@ -2,13 +2,13 @@
 
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import OceanParticlesBackground from "./OceanParticlesBackground"
+import HeroBackground from "./HeroBackground"
 
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-start justify-start overflow-hidden pt-25">
       {/* Ocean Particles Background */}
-      <OceanParticlesBackground className="opacity-100" />
+      <HeroBackground className="opacity-100" />
       
       {/* Content Container */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex items-center justify-center">
