@@ -7,8 +7,8 @@ const manrope = Manrope({
 });
 
 export const metadata = {
-  title: "Sail - AI-Powered Sales Intelligence",
-  description: "Transform your sales process with AI-powered insights and automation",
+  title: "Navio - Software, effortless",
+  description: "AI expert that lives in your product, guiding users and automating tasks.",
 };
 
 export default function RootLayout({
@@ -19,7 +19,6 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <head>    
-          <script src="https://navio-three.vercel.app/embed.min.js"></script>
       </head>
       <body
         className={`${manrope.variable}`}

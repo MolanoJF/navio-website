@@ -30,12 +30,14 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
+import { LazyTerminal } from "@/components/ui/lazy-terminal"
+import { Widget } from "@/components/ui/widget"
 
 export default function How() {
   const [activeTab, setActiveTab] = React.useState("analytics")
 
   return (
-    <section className="py-16 bg-background">
+    <section id="how" className="py-16 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* How Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-top mb-10">
@@ -133,16 +135,14 @@ export default function How() {
         {/* 2-Card Layout with Separator */}
         <div className="grid md:grid-cols-2 gap-0 relative">
           {/* Column 1: Integration */}
-          <div className="relative p-6 lg:p-8">
-            <div className="text-center mb-6">
-              <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-primary to-primary/80 rounded-xl flex items-center justify-center">
-                <IconCode className="w-8 h-8 text-primary-foreground" />
-              </div>
-              <h3 className="text-xl lg:text-2xl font-bold text-card-foreground transition-colors duration-300 mb-4">
+          <div className="relative p-6 lg:p-8 flex flex-col items-center justify-center">
+            <LazyTerminal />
+              <div className="text-center mt-8">
+              <h3 className="text-2xl lg:text-3xl  font-bold text-card-foreground transition-colors duration-300 mb-4">
                 Integration
               </h3>
               <p className="leading-relaxed text-muted-foreground transition-colors duration-300">
-                Embed our lightweight agent with a single line of code. No complex SDKs.
+                Embed our lightweight agent with a single line of code. No complex SDKs..
               </p>
             </div>
           </div>
@@ -151,12 +151,10 @@ export default function How() {
           <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-border"></div>
 
           {/* Column 2: Widget */}
-          <div className="relative p-6 lg:p-8">
-            <div className="text-center mb-6">
-              <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-accent to-accent/80 rounded-xl flex items-center justify-center">
-                <IconPalette className="w-8 h-8 text-accent-foreground" />
-              </div>
-              <h3 className="text-xl lg:text-2xl font-bold text-card-foreground transition-colors duration-300 mb-4">
+          <div className="relative p-6 lg:p-8 flex flex-col">
+            <Widget />
+            <div className="text-center mt-auto pt-8">
+              <h3 className="text-2xl lg:text-3xl font-bold text-card-foreground transition-colors duration-300 mb-4">
                 Widget
               </h3>
               <p className="leading-relaxed text-muted-foreground transition-colors duration-300">

@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import {
   Navbar as ResizableNavbar,
@@ -18,9 +17,9 @@ export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   const navItems = [
-    { name: "Product", link: "/#features" },
-    { name: "Pricing", link: "/pricing" },
-    { name: "Resources", link: "#resources" },
+    { name: "Demo", link: "/#features" },
+    { name: "Features", link: "/#how" },
+    { name: "FAQ", link: "/#faq" },
   ]
 
   const toggleMobileMenu = () => {
@@ -59,7 +58,7 @@ export default function Navbar() {
               variant="primary"
               className="hidden sm:inline-flex px-4 py-2 text-sm font-medium btn-3d"
             >
-              Try Now
+              Book a Demo
             </NavbarButton>
           </div>
         </NavBody>
