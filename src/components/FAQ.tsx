@@ -1,9 +1,13 @@
+"use client"
+
+import { motion } from "motion/react"
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion";
+} from "@/components/ui/accordion"
+import { FadeIn } from "@/components/ui/animated"
 
 const faq = [
   {
@@ -30,32 +34,48 @@ const faq = [
 
 const FAQ = () => {
   return (
-    <section id="faq" className="py-16 bg-background">
+    <section id="faq" className="py-30 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-          <div className="text-left">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl mb-6 mt-4 font-bold text-white transition-colors duration-300">
-              Frequently Asked <br /> Questions
-            </h2>
-            <p className="text-lg sm:text-xl max-w-3xl mx-auto leading-relaxed text-white opacity-70 transition-colors duration-300">
-          Everything product and engineering teams <br />  need to know before getting started.
-          </p>
-          </div>
+          <FadeIn>
+            <div className="text-left">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl mb-6 mt-4 font-bold text-white transition-colors duration-300">
+                Frequently Asked <br /> Questions
+              </h2>
+              <p className="text-lg sm:text-xl max-w-3xl mx-auto leading-relaxed text-white opacity-70 transition-colors duration-300">
+            Everything product and engineering teams <br />  need to know before getting started.
+            </p>
+            </div>
+          </FadeIn>
 
-          <div className="text-left">
-            <Accordion type="single" defaultValue="question-0" className="w-full">
-              {faq.map(({ question, answer }, index) => (
-                <AccordionItem key={question} value={`question-${index}`}>
-                  <AccordionTrigger className="text-left text-lg font-light text-white hover:text-white/80">
-                    {question}
-                  </AccordionTrigger>
-                  <AccordionContent className="text-base text-muted-foreground">
-                    {answer}
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </div>
+          <FadeIn>
+            <div className="text-left">
+              <Accordion type="single" defaultValue="question-0" className="w-full">
+                {faq.map(({ question, answer }, index) => (
+                  <motion.div
+                    key={question}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    transition={{
+                      duration: 0.6,
+                      delay: index * 0.2,
+                      ease: "easeOut",
+                    }}
+                  >
+                    <AccordionItem value={`question-${index}`}>
+                      <AccordionTrigger className="text-left text-lg font-light text-white hover:text-white/80">
+                        {question}
+                      </AccordionTrigger>
+                      <AccordionContent className="text-base text-muted-foreground">
+                        {answer}
+                      </AccordionContent>
+                    </AccordionItem>
+                  </motion.div>
+                ))}
+              </Accordion>
+            </div>
+          </FadeIn>
         </div>
       </div>
     </section>

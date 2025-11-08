@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react"
 import * as THREE from "three"
+import { motion } from "motion/react"
 
 interface OceanParticlesBackgroundProps {
   className?: string
@@ -266,11 +267,19 @@ export default function OceanParticlesBackground({ className = "" }: OceanPartic
   }, [])
 
   return (
-    <canvas
-      ref={canvasRef}
-      className={`absolute inset-0 w-full h-full ${className}`}
-      style={{ pointerEvents: "auto", zIndex: 1 }}
-    />
+    <motion.div
+      initial={{ scale: 1.5, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ duration: 1, ease: "easeOut", delay: -0.2 }}
+      className="absolute inset-0 w-full h-full"
+      style={{ transformOrigin: "center" }}
+    >
+      <canvas
+        ref={canvasRef}
+        className={`absolute inset-0 w-full h-full ${className}`}
+        style={{ pointerEvents: "auto", zIndex: 1 }}
+      />
+    </motion.div>
   )
 }
 

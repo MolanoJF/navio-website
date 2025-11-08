@@ -58,7 +58,7 @@ export function LazyTerminal({ className }: LazyTerminalProps) {
         </Terminal>
       ) : (
         // Placeholder skeleton while not visible
-        <div className="z-0 h-full max-h-[400px] w-full max-w-lg rounded-xl border border-border bg-background p-4">
+        <div className="z-0 h-full max-h-[400px] w-full max-w-[480px] rounded-xl border border-border bg-background p-4">
           <div className="flex flex-col gap-y-2 border-b border-border p-4">
             <div className="flex flex-row gap-x-2">
               <div className="h-2 w-2 rounded-full bg-red-500"></div>

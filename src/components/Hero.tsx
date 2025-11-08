@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import HeroBackground from "./HeroBackground"
+import { FadeInImmediate } from "./ui/animated"
 
 export default function Hero() {
   return (
@@ -14,23 +15,29 @@ export default function Hero() {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex items-center justify-center">
         <div className="max-w-4xl text-center">
           {/* Main Headline */}
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground leading-tight tracking-tight mb-2">
-          Your Software, <br />Effortless
-          </h1>
-          
+          <FadeInImmediate delay={0.2} blur={true}>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground leading-tight tracking-tight mb-2">
+            Your Software, <br />Effortless
+            </h1>
+          </FadeInImmediate>
+
           {/* Sub-headline */}
-          <p className="text-base sm:text-lg lg:text-xl text-foreground/80 leading-relaxed max-w-2xl mx-auto mb-6">
-          Turn your software into a self-guiding product that helps <br />every user learn, act, and succeed instantly.
-          </p>
-          
+          <FadeInImmediate delay={0.4} blur={true}>
+            <p className="text-base sm:text-lg lg:text-xl text-foreground/80 leading-relaxed max-w-2xl mx-auto mb-6">
+            Turn your software into a self-guiding product that helps <br />every user learn, act, and succeed instantly.
+            </p>
+          </FadeInImmediate>
+
           {/* CTA Button */}
-          <div className="flex justify-center">
-            <Button type="button" size="lg" className="text-xl px-12 py-4 h-16 relative z-10 font-semibold rounded-full btn-3d" asChild>
-              <Link href="https://cal.com/navio-owdjpk/navio-demo">
-                Try Now
-              </Link>
-            </Button>
-          </div>
+          <FadeInImmediate delay={0.6} blur={true}>
+            <div className="flex justify-center">
+              <Button type="button" size="lg" className="text-xl px-12 py-4 h-16 relative z-10 font-semibold rounded-full btn-3d" asChild>
+                <Link href="https://cal.com/navio-owdjpk/navio-demo">
+                  Try Now
+                </Link>
+              </Button>
+            </div>
+          </FadeInImmediate>
         </div>
       </div>
       

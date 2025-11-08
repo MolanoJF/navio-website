@@ -1,7 +1,9 @@
 "use client"
 
 import * as React from "react"
+import { motion } from "motion/react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { FadeIn } from "@/components/ui/animated"
 
 const tabs = [
   {
@@ -50,14 +52,16 @@ export default function What() {
     <section id="what" className="py-24 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-10">
-          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-4">
-            From "How do I...?" to "Done."
-          </h2>
-          <p className="text-lg sm:text-xl text-foreground/70 max-w-3xl mx-auto leading-relaxed">
-          Navio understands your interface in real time, guiding users through every step—or executing the workflow end-to-end with total precision. All inside your app.
-          </p>
-        </div>
+        <FadeIn>
+          <div className="text-center mb-10">
+            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-4">
+              From "How do I...?" to "Done."
+            </h2>
+            <p className="text-lg sm:text-xl text-foreground/70 max-w-3xl mx-auto leading-relaxed">
+            Navio understands your interface in real time, guiding users through every step—or executing the workflow end-to-end with total precision. All inside your app.
+            </p>
+          </div>
+        </FadeIn>
 
         {/* Interactive Tabs */}
         <div className="w-full">
@@ -88,12 +92,22 @@ export default function What() {
 
             {tabs.map(tab => (
               <TabsContent key={tab.value} value={tab.value} className="space-y-6">
-                               <div className="text-center mb-6">
-                 <p className="text-lg sm:text-xl text-foreground/70 max-w-3xl mx-auto leading-relaxed">
-                   {tab.description}
-                 </p>
-               </div>
-                <div className="w-full relative">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, ease: "easeOut" }}
+                  className="text-center mb-6"
+                >
+                  <p className="text-lg sm:text-xl text-foreground/70 max-w-3xl mx-auto leading-relaxed">
+                    {tab.description}
+                  </p>
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
+                  className="w-full relative"
+                >
                   <div className="aspect-video bg-gradient-to-br from-primary/10 to-accent/10 rounded-2xl border border-border/50 overflow-hidden">
                     <video
                       src="/PH.mp4"
@@ -105,7 +119,7 @@ export default function What() {
                     />
                   </div>
                   <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent pointer-events-none"></div>
-                </div>
+                </motion.div>
               </TabsContent>
             ))}
           </Tabs>
