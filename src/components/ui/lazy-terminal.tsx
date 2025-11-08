@@ -45,8 +45,8 @@ export function LazyTerminal({ className }: LazyTerminalProps) {
       {isVisible ? (
         <Terminal>
           <div className="space-y-2">
-            <AnimatedSpan delay={0} className="opacity-60">&lt;!doctype html&gt;</AnimatedSpan>
-            <AnimatedSpan delay={500} className="opacity-60">&lt;html lang="en"&gt;</AnimatedSpan>
+            <AnimatedSpan delay={0} className="opacity-60">&lt;html&gt;</AnimatedSpan>
+            <AnimatedSpan delay={500} className="opacity-60">&lt;body&gt;</AnimatedSpan>
             <Skeleton delay={1000} className="h-4 w-[220px]" />
             <Skeleton delay={1500} className="h-4 w-[180px]" />
             <AnimatedSpan delay={2000}>&lt;script src="https://naviobot.com/embed.min.js"&gt;&lt;/script&gt;</AnimatedSpan>

@@ -7,29 +7,24 @@ import {
 
 const faq = [
   {
-    question: "What is your return policy?",
+    question: "How is Navio different from product tours or support chatbots?",
     answer:
-      "You can return unused items in their original packaging within 30 days for a refund or exchange. Contact support for assistance.",
+      "Unlike passive product tours that only point to features, Navio actively guides user step-by-step or automates entire workflows in real time. It's not a chatbot; it’s an expert co-pilot that works directly inside your application.",
   },
   {
-    question: "How do I track my order?",
+    question: "What can Navio do inside our application?",
     answer:
-      "Track your order using the link provided in your confirmation email, or log into your account to view tracking details.",
+      "Navio can: Guide users with real-time visual instructions and context. Automate routine workflows end-to-end. Surface contextual help from your docs. Capture insights on friction points and user intent.",
   },
   {
-    question: "Do you ship internationally?",
+    question: "How does Navio integrate with our product?",
     answer:
-      "Yes, we ship worldwide. Shipping fees and delivery times vary by location, and customs duties may apply for some countries.",
+      "Add a single JavaScript snippet, and Navio automatically maps your interface. It works with React, Vue, Angular, Next.js, and other modern frameworks. No backend changes required, no complex SDK, no engineering bottleneck.",
   },
   {
-    question: "What payment methods do you accept?",
+    question: "How long does it take to set up?",
     answer:
-      "We accept Visa, MasterCard, American Express, PayPal, Apple Pay, and Google Pay, ensuring secure payment options for all customers.",
-  },
-  {
-    question: "What if I receive a damaged item?",
-    answer:
-      "Please contact our support team within 48 hours of delivery with photos of the damaged item. We'll arrange a replacement or refund.",
+      "Most teams embed Navio in under an hour. You can go live with your first guided flow the same day.",
   },
 ];
 
@@ -39,16 +34,19 @@ const FAQ = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
           <div className="text-left">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white transition-colors duration-300">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl mb-6 mt-4 font-bold text-white transition-colors duration-300">
               Frequently Asked <br /> Questions
             </h2>
+            <p className="text-lg sm:text-xl max-w-3xl mx-auto leading-relaxed text-white opacity-70 transition-colors duration-300">
+          Everything product and engineering teams <br />  need to know before getting started.
+          </p>
           </div>
 
           <div className="text-left">
             <Accordion type="single" defaultValue="question-0" className="w-full">
               {faq.map(({ question, answer }, index) => (
                 <AccordionItem key={question} value={`question-${index}`}>
-                  <AccordionTrigger className="text-left text-lg text-white hover:text-white/80">
+                  <AccordionTrigger className="text-left text-lg font-light text-white hover:text-white/80">
                     {question}
                   </AccordionTrigger>
                   <AccordionContent className="text-base text-muted-foreground">

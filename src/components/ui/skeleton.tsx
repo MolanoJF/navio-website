@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils"
-import { motion } from "motion/react"
+import { motion, HTMLMotionProps } from "motion/react"
 
-interface SkeletonProps extends React.HTMLAttributes<HTMLDivElement> {
+interface SkeletonProps extends Omit<HTMLMotionProps<"div">, "initial" | "animate" | "transition"> {
   delay?: number
 }
 

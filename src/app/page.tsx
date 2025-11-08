@@ -2,7 +2,7 @@ import Navbar from "@/components/Navbar"
 import Hero from "@/components/Hero"
 import What from "@/components/What"
 import Why from "@/components/Why"
-import How from "@/components/How"
+import Features from "@/components/Features"
 import CTA from "@/components/CTA"
 import FAQ from "@/components/FAQ"
 import Footer from "@/components/Footer"
@@ -13,8 +13,8 @@ export default function Home() {
       <Navbar />
       <Hero />
       <What />
+      <Features />
       <Why />
-      <How />
       <FAQ />
       <CTA />
       <Footer />

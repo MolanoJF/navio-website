@@ -20,7 +20,7 @@ export default function Hero() {
           
           {/* Sub-headline */}
           <p className="text-base sm:text-lg lg:text-xl text-foreground/80 leading-relaxed max-w-2xl mx-auto mb-6">
-          An intelligent layer that understands your product, delivering instant, in-app guidance and powerful one-click automation.
+          Turn your software into a self-guiding product that helps <br />every user learn, act, and succeed instantly.
           </p>
           
           {/* CTA Button */}

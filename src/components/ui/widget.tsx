@@ -58,7 +58,7 @@ export function Widget() {
   return (
     <div className="absolute bottom-28 right-16" ref={containerRef}>
       {isExpanded && (
-        <div className="absolute bottom-18 right-0 w-[420px] sm:w-[480px] bg-[#1a1a1a] rounded-4xl shadow-2xl overflow-hidden border border-white/10 widget-expand">
+        <div className="absolute bottom-18 right-0 w-[420px] sm:w-[480px] bg-[#0a0a0a] rounded-4xl shadow-2xl overflow-hidden border border-white/10 widget-expand">
           {/* Header */}
           <div className="px-6 py-2 border-b border-white/10">
             <h2 className="text-xl font-semibold text-white">Navio</h2>
@@ -67,7 +67,7 @@ export function Widget() {
           {/* Chat Content */}
           <div className="p-4">
             {/* Message Bubble */}
-            <div className="bg-[#2a2a2a] rounded-3xl p-4 mb-4">
+            <div className="bg-[#1a1a1a] rounded-3xl p-4 mb-4">
               <TextGenerateEffect
                 words="Hello! I'm Navio, your AI assistant for web pages. I can answer questions about the content, guide you through tasks, and even perform actions for you."
                 className="text-white text-sm leading-relaxed font-normal"
@@ -80,17 +80,17 @@ export function Widget() {
             {/* Action Buttons */}
             <div className="flex gap-3 mb-4">
               <button
-                className="flex-1 bg-[#2a2a2a] hover:bg-[#2a2a2a]/60 text-white border border-transparent hover:border-blue-600 rounded-full py-3 text-sm font-medium transition-all duration-200"
+                className="flex-1 bg-[#1a1a1a] hover:bg-[#1a1a1a]/60 text-white border border-transparent hover:border-blue-600 rounded-full py-3 text-sm font-medium transition-all duration-200"
               >
                 Questions
               </button>
               <button
-                className="flex-1 bg-[#2a2a2a] hover:bg-[#2a2a2a]/60 text-white border border-transparent hover:border-blue-600 rounded-full py-3 text-sm font-medium transition-all duration-200"
+                className="flex-1 bg-[#1a1a1a] hover:bg-[#1a1a1a]/60 text-white border border-transparent hover:border-blue-600 rounded-full py-3 text-sm font-medium transition-all duration-200"
               >
                 How do I
               </button>
               <button
-                className="flex-1 bg-[#2a2a2a] hover:bg-[#2a2a2a]/60 text-white border border-transparent hover:border-blue-600 rounded-full py-3 text-sm font-medium transition-all duration-200"
+                className="flex-1 bg-[#1a1a1a] hover:bg-[#1a1a1a]/60 text-white border border-transparent hover:border-blue-600 rounded-full py-3 text-sm font-medium transition-all duration-200"
               >
                 Do it
               </button>
@@ -101,7 +101,7 @@ export function Widget() {
               <input
                 type="text"
                 placeholder="Type what you'd like me to do..."
-                className="w-full bg-[#2a2a2a] text-white placeholder-gray-400 rounded-3xl pl-6 pr-28 py-3 text-sm border border-white/10 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+                className="w-full bg-[#1a1a1a] text-white placeholder-gray-400 rounded-3xl pl-6 pr-28 py-3 text-sm border border-white/10 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
               />
               <div className="absolute right-1 top-1/2 -translate-y-1/2 flex gap-1">
                 <Button

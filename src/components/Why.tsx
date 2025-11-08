@@ -14,7 +14,7 @@ export default function Why() {
           Activate Users. Transform Your Product.
           </h2>
           <p className="text-lg sm:text-xl max-w-3xl mx-auto leading-relaxed text-white opacity-70 transition-colors duration-300">
-          Drive adoption by solving user problems in real-time while uncovering the insights that build a better product.
+          Solve user problems the moment they appear and learn from every interaction to build a better product, faster.
           </p>
         </div>
 
@@ -42,7 +42,7 @@ export default function Why() {
           <div className="relative p-6 lg:p-8">
             <div className="text-left mb-10">
               <h3 className="text-2xl lg:text-3xl font-bold text-white mb-4 transition-colors duration-300">
-                Double User Activation
+                Boost Time-to-Value
               </h3>
               <p className="leading-relaxed text-white opacity-70 transition-colors duration-300">
               Eliminate the learning curve and drastically reduce time-to-value. Convert new sign-ups into engaged, paying customers faster ever.

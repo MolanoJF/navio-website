@@ -1,29 +1,29 @@
 "use client"
 
-import * as React from 'react'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import * as React from "react"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 const tabs = [
   {
-    name: 'Guide',
-    value: 'guide',
+    name: "Guide",
+    value: "guide",
     icon: (
       <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
       </svg>
     ),
-    description: 'Real-time visual cues guide users through any workflow, step by step.'
+    description: "Real-time visual cues guide users through any workflow, step by step."
   },
   {
-    name: 'Autopilot',
-    value: 'autopilot',
+    name: "Autopilot",
+    value: "autopilot",
     icon: (
       <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
       </svg>
     ),
-    description: 'Navio autonomously completes entire tasks for users, from start to finish. '
+    description: "Navio autonomously completes entire tasks for users, from start to finish."
   }
 ]
 
@@ -47,7 +47,7 @@ export default function What() {
   }, [activeTab])
 
   return (
-    <section id="features" className="py-24 bg-background">
+    <section id="what" className="py-24 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-10">
@@ -55,7 +55,7 @@ export default function What() {
             From "How do I...?" to "Done."
           </h2>
           <p className="text-lg sm:text-xl text-foreground/70 max-w-3xl mx-auto leading-relaxed">
-          Navio instantly resolves user issues by guiding them step-by-step or completing tasks automatically, right inside your app.
+          Navio understands your interface in real time, guiding users through every step—or executing the workflow end-to-end with total precision. All inside your app.
           </p>
         </div>
 
@@ -93,7 +93,7 @@ export default function What() {
                    {tab.description}
                  </p>
                </div>
-                <div className="w-full">
+                <div className="w-full relative">
                   <div className="aspect-video bg-gradient-to-br from-primary/10 to-accent/10 rounded-2xl border border-border/50 overflow-hidden">
                     <video
                       src="/PH.mp4"
