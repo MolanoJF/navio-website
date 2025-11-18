@@ -9,6 +9,18 @@ const manrope = Manrope({
 export const metadata = {
   title: "Navio - Software, effortless",
   description: "AI expert that lives in your product, guiding users and automating tasks.",
+  icons: {
+    icon: [
+      {
+        url: "/Navio-D.svg",
+        media: "(prefers-color-scheme: light)",
+      },
+      {
+        url: "/Navio-L.svg",
+        media: "(prefers-color-scheme: dark)",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({

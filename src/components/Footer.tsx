@@ -13,8 +13,9 @@ export default function Footer() {
           {/* Brand Section */}
           <div>
             <div className="mb-2">
-              <h3 className="text-4xl font-bold text-foreground tracking-tight mb-4">
-                NAVIO
+              <h3 className="text-4xl font-bold text-foreground tracking-tight mb-4 flex items-center gap-2">
+                <img src="/Navio-L.svg" alt="Navio Logo" className="w-12 h-12" />
+                Navio
               </h3>
               <p className="text-foreground/70 text-base leading-relaxed max-w-md mb-6">
                 The intelligent layer your app, helping users get guidance or automate entire workflows.

@@ -18,7 +18,7 @@ export default function Navbar() {
 
   const navItems = [
     { name: "Demo", link: "/#features" },
-    { name: "Features", link: "/#how" },
+    { name: "Features", link: "/#features" },
     { name: "FAQ", link: "/#faq" },
   ]
 
@@ -37,8 +37,9 @@ export default function Navbar() {
         <NavBody>
           {/* Logo */}
           <div className="flex-shrink-0 z-20">
-            <Link href="/" className="text-2xl lg:text-3xl text-foreground tracking-tight hover:opacity-40 transition-opacity">
-              NAVIO
+            <Link href="/" className="flex items-center space-x-2 hover:opacity-40 transition-opacity">
+              <img src="/Navio-L.svg" alt="Navio Logo" className="h-6 lg:h-8 w-auto" />
+              <span className="text-base sm:text-lg lg:text-xl text-foreground tracking-tight">Navio</span>
             </Link>
           </div>
 
@@ -68,8 +69,9 @@ export default function Navbar() {
           <MobileNavHeader>
             {/* Logo */}
             <div className="flex-shrink-0 z-20">
-              <Link href="/" className="text-2xl font-bold text-foreground tracking-tight hover:opacity-80 transition-opacity">
-                NAVIO
+              <Link href="/" className="flex items-center space-x-2 hover:opacity-80 transition-opacity">
+                <img src="/Navio-L.svg" alt="Navio Logo" className="h-6 w-auto" />
+                <span className="text-base sm:text-lg lg:text-xl text-foreground tracking-tight">Navio</span>
               </Link>
             </div>
 
