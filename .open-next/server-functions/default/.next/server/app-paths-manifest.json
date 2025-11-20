@@ -1,10 +1,10 @@
 {
   "/_not-found/page": "app/_not-found/page.js",
   "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/dashboard/page": "app/dashboard/page.js",
-  "/pricing/page": "app/pricing/page.js",
-  "/legal/privacy/page": "app/legal/privacy/page.js",
   "/page": "app/page.js",
   "/legal/terms/page": "app/legal/terms/page.js",
-  "/security/page": "app/security/page.js"
+  "/legal/privacy/page": "app/legal/privacy/page.js",
+  "/dashboard/page": "app/dashboard/page.js",
+  "/security/page": "app/security/page.js",
+  "/pricing/page": "app/pricing/page.js"
 }
