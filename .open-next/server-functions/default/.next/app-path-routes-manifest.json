@@ -2,9 +2,9 @@
   "/_not-found/page": "/_not-found",
   "/favicon.ico/route": "/favicon.ico",
   "/dashboard/page": "/dashboard",
+  "/pricing/page": "/pricing",
+  "/legal/privacy/page": "/legal/privacy",
   "/page": "/",
   "/legal/terms/page": "/legal/terms",
-  "/security/page": "/security",
-  "/legal/privacy/page": "/legal/privacy",
-  "/pricing/page": "/pricing"
+  "/security/page": "/security"
 }
