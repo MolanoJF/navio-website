@@ -112,7 +112,7 @@ export default function What() {
                 <video
                   ref={videoRef}
                   key={activeTab}
-                  src={activeTab === 'guide' ? '/navio-guide.mp4' : '/navio-autopilot.mp4'}
+                  src={activeTab === 'guide' ? 'https://pub-7f94223bba044f018e2c8e158d67b673.r2.dev/navio-guide.mp4' : 'https://pub-7f94223bba044f018e2c8e158d67b673.r2.dev/navio-autopilot.mp4'}
                   className="w-full h-full object-cover"
                   muted
                   loop
