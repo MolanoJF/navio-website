@@ -124,8 +124,10 @@ export default function PricingPage() {
               </div>
               
               {/* CTA Button moved here */}
-              <Button className="w-full" variant="outline">
-                Start for Free
+              <Button className="w-full" variant="outline" asChild>
+                <a href="https://demo.naviobot.com">
+                  Start for Free
+                </a>
               </Button>
               
               <ul className="space-y-3">
@@ -169,8 +171,10 @@ export default function PricingPage() {
               </div>
               
               {/* CTA Button moved here */}
-              <Button className="w-full">
-                Choose Growth
+              <Button className="w-full" asChild>
+                <a href="https://demo.naviobot.com">
+                  Choose Growth
+                </a>
               </Button>
               
               <ul className="space-y-3">
@@ -212,8 +216,10 @@ export default function PricingPage() {
               </div>
               
               {/* CTA Button moved here */}
-              <Button className="w-full" variant="outline">
-                Contact Sales
+              <Button className="w-full" variant="outline" asChild>
+                <a href="https://demo.naviobot.com">
+                  Contact Sales
+                </a>
               </Button>
               
               <ul className="space-y-3">
@@ -250,8 +256,10 @@ export default function PricingPage() {
           <p className="text-lg text-muted-foreground mb-8">
             Let's design the perfect enterprise solution together.
           </p>
-          <Button size="lg" className="px-8 py-4 text-lg">
-            Build Your First Agent
+          <Button size="lg" className="px-8 py-4 text-lg" asChild>
+            <a href="https://demo.naviobot.com">
+              Build Your First Agent
+            </a>
           </Button>
         </div>
 

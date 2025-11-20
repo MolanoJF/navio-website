@@ -45,28 +45,28 @@
       "namedRegex": "^/favicon\\.ico(?:/)?$"
     },
     {
+      "page": "/legal/privacy",
+      "regex": "^/legal/privacy(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/legal/privacy(?:/)?$"
+    },
+    {
+      "page": "/legal/terms",
+      "regex": "^/legal/terms(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/legal/terms(?:/)?$"
+    },
+    {
       "page": "/pricing",
       "regex": "^/pricing(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/pricing(?:/)?$"
     },
     {
-      "page": "/privacy",
-      "regex": "^/privacy(?:/)?$",
-      "routeKeys": {},
-      "namedRegex": "^/privacy(?:/)?$"
-    },
-    {
       "page": "/security",
       "regex": "^/security(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/security(?:/)?$"
-    },
-    {
-      "page": "/terms",
-      "regex": "^/terms(?:/)?$",
-      "routeKeys": {},
-      "namedRegex": "^/terms(?:/)?$"
     }
   ],
   "dataRoutes": [],

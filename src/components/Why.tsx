@@ -31,7 +31,7 @@ export default function Why() {
                   Slash Your Support Costs
                 </h3>
                 <p className="leading-relaxed text-white opacity-70 transition-colors duration-300">
-                  Empower users to find answers and complete tasks on their own. Solving queries in-app before they become tickets.
+                  Empower users to find answers and complete tasks on their own.
                 </p>
               </div>
               <div className="relative w-full flex-1 min-h-[250px] sm:min-h-[320px] md:min-h-[300px] lg:min-h-[400px]">
@@ -39,6 +39,7 @@ export default function Why() {
               </div>
             </div>
           </FadeIn>
+
 
           {/* Vertical Separator 1 */}
           <div className="hidden md:block absolute left-1/3 top-0 bottom-0 w-px bg-white/20"></div>
@@ -51,7 +52,7 @@ export default function Why() {
                   Boost Time-to-Value
                 </h3>
                 <p className="leading-relaxed text-white opacity-70 transition-colors duration-300">
-                Eliminate the learning curve and drastically reduce time-to-value. Convert new sign-ups into engaged, paying customers faster ever.
+                Eliminate the learning curve and drastically reduce time-to-value.
                 </p>
               </div>
               <div className="relative w-full flex-1 min-h-[250px] sm:min-h-[320px] md:min-h-[300px] lg:min-h-[400px]">
@@ -71,7 +72,7 @@ export default function Why() {
                   Get Actionable Insights
                 </h3>
                 <p className="leading-relaxed text-white opacity-70 transition-colors duration-300">
-                  Understand exactly where users get stuck and what they intend to do. Get actionable insights to help you build a better product.
+                  Understand exactly where users get stuck and what they intend to do.
                 </p>
               </div>
               <div className="relative w-full flex-1 min-h-[250px] sm:min-h-[320px] md:min-h-[300px] lg:min-h-[400px]">

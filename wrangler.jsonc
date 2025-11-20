@@ -5,6 +5,12 @@
     "compatibility_flags": [
       "nodejs_compat"
     ],
+    "routes": [
+      {
+        "pattern": "naviobot.com/*",
+        "zone_name": "naviobot.com"
+      }
+    ],
     "assets": {
       "directory": ".open-next/assets",
       "binding": "ASSETS"

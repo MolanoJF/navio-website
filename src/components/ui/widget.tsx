@@ -127,7 +127,6 @@ export function Widget() {
 
         {/* Toggle Button - Always visible in bottom right */}
         <Button
-          onClick={() => setIsExpanded(!isExpanded)}
           className="h-12 w-12 sm:h-14 sm:w-14 bg-blue-600 hover:bg-blue-700 rounded-full shadow-2xl flex-shrink-0"
         >
           {isExpanded ? (

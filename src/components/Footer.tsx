@@ -21,7 +21,7 @@ export default function Footer() {
                 The intelligent layer your app, helping users get guidance or automate entire workflows.
               </p>
               
-              {/* Social Media Links - Moved here under brand description */}
+              {/* Social Media Links*/}
               <div className="flex items-center gap-4">
                 <a 
                   href="https://x.com/Navio_bot" 
@@ -32,13 +32,13 @@ export default function Footer() {
                     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
                   </svg>
                 </a>
-                <a 
-                  href="#linkedin" 
+                <a
+                  href="https://www.linkedin.com/company/naviobot"
                   className="text-foreground/60 hover:text-foreground transition-colors duration-200"
                   aria-label="LinkedIn"
                 >
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.047-1.032-3.047-1.032 0-1.21.805-1.21 1.972v3.644h-2.725v-7.34h2.725v1.467c.31-.562 1.043-1.064 2.348-1.064 2.527 0 2.987 1.662 2.987 3.817v4.188zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9.351h3.564v11.101zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
                   </svg>
                 </a>
               </div>

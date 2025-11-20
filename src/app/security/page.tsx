@@ -180,23 +180,6 @@ export default function SecurityPage() {
           </div>
         </div>
 
-        {/* CTA Section */}
-        <div className="text-center">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-4">
-            Ready to secure your application?
-          </h2>
-          <p className="text-lg text-muted-foreground mb-8">
-            Get started with SAIL today and experience enterprise-grade security.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="px-8 py-4 text-lg">
-              Start Free Trial
-            </Button>
-            <Button size="lg" variant="outline" className="px-8 py-4 text-lg">
-              Schedule Security Review
-            </Button>
-          </div>
-        </div>
       </div>
       <Footer />
     </main>

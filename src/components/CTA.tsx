@@ -18,7 +18,7 @@ export default function CTA() {
               </h2>
               <div className="flex justify-start mt-6 sm:mt-8">
                 <Button type="button" size="lg" className="text-lg sm:text-xl px-8 sm:px-12 py-3 sm:py-4 h-14 sm:h-16 relative z-10 font-semibold rounded-full btn-3d" asChild>
-                  <Link href="https://cal.com/navio-owdjpk/navio-demo">
+                  <Link href="https://demo.naviobot.com">
                     Try Now
                   </Link>
                 </Button>
