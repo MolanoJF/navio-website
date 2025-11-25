@@ -48,14 +48,24 @@ export default function What() {
 
   React.useEffect(() => {
     if (videoRef.current && videoInView && !hasVideoStarted) {
-      videoRef.current.play()
+      const playPromise = videoRef.current.play()
+      if (playPromise !== undefined) {
+        playPromise.catch(error => {
+          console.warn('Video autoplay failed:', error)
+        })
+      }
       setHasVideoStarted(true)
     }
   }, [videoInView, hasVideoStarted])
 
   React.useEffect(() => {
     if (videoRef.current && hasVideoStarted) {
-      videoRef.current.play()
+      const playPromise = videoRef.current.play()
+      if (playPromise !== undefined) {
+        playPromise.catch(error => {
+          console.warn('Video autoplay failed on tab change:', error)
+        })
+      }
     }
   }, [activeTab, hasVideoStarted])
 
@@ -111,7 +121,6 @@ export default function What() {
               <div className="aspect-video bg-gradient-to-br from-primary/10 to-accent/10 rounded-4xl border border-border/50 overflow-hidden">
                 <video
                   ref={videoRef}
-                  key={activeTab}
                   src={activeTab === 'guide' ? 'https://pub-7f94223bba044f018e2c8e158d67b673.r2.dev/navio-guide.mp4' : 'https://pub-7f94223bba044f018e2c8e158d67b673.r2.dev/navio-autopilot.mp4'}
                   className="w-full h-full object-cover"
                   muted
