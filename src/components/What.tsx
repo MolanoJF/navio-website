@@ -47,10 +47,41 @@ export default function What() {
   }, [isInView])
 
   React.useEffect(() => {
-    if (videoRef.current && activeTab) {
-      videoRef.current.currentTime = 0
+    if (videoRef.current && videoInView && !hasVideoStarted) {
+      // Wait for video to load before attempting to play
+      const handleCanPlay = () => {
+        const playPromise = videoRef.current?.play()
+        if (playPromise !== undefined) {
+          playPromise.catch(error => {
+            console.warn('Video autoplay failed:', error)
+          })
+        }
+      }
+
+      if (videoRef.current.readyState >= 2) {
+        // Video is already loaded
+        handleCanPlay()
+      } else {
+        // Wait for video to load
+        videoRef.current.addEventListener('canplay', handleCanPlay, { once: true })
+        return () => {
+          videoRef.current?.removeEventListener('canplay', handleCanPlay)
+        }
+      }
+      setHasVideoStarted(true)
     }
-  }, [activeTab])
+  }, [videoInView, hasVideoStarted])
+
+  React.useEffect(() => {
+    if (videoRef.current && hasVideoStarted && videoRef.current.readyState >= 2) {
+      const playPromise = videoRef.current.play()
+      if (playPromise !== undefined) {
+        playPromise.catch(error => {
+          console.warn('Video autoplay failed on tab change:', error)
+        })
+      }
+    }
+  }, [activeTab, hasVideoStarted])
 
   React.useLayoutEffect(() => {
     const activeIndex = tabs.findIndex(tab => tab.value === activeTab)
