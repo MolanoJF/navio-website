@@ -36,9 +36,10 @@ export default function What() {
   const sectionRef = React.useRef(null)
   const isInView = useInView(sectionRef, { once: true, margin: "0px 0px -100px 0px" })
   const [shouldAnimate, setShouldAnimate] = React.useState(false)
-  const videoRef = React.useRef<HTMLVideoElement>(null)
-  const [hasVideoStarted, setHasVideoStarted] = React.useState(false)
-  const videoContainerRef = React.useRef(null)
+  const guideVideoRef = React.useRef<HTMLVideoElement>(null)
+  const autopilotVideoRef = React.useRef<HTMLVideoElement>(null)
+  const containerRef = React.useRef(null)
+  const videoInView = useInView(containerRef, { amount: 1 })
 
   React.useEffect(() => {
     if (isInView) {
@@ -46,32 +47,27 @@ export default function What() {
     }
   }, [isInView])
 
+  // Handle video playback when videos come into view
   React.useEffect(() => {
-    if (videoRef.current && !hasVideoStarted && isInView) {
-      const playVideo = async () => {
-        try {
-          await videoRef.current?.play()
-          setHasVideoStarted(true)
-        } catch (error) {
-          console.warn('Video autoplay failed:', error)
-        }
-      }
-      playVideo()
-    }
-  }, [isInView, hasVideoStarted])
+    if (!videoInView) return
 
-  React.useEffect(() => {
-    if (videoRef.current && hasVideoStarted) {
-      const playVideo = async () => {
-        try {
-          await videoRef.current?.play()
-        } catch (error) {
-          console.warn('Video autoplay failed on tab change:', error)
-        }
+    const playVideo = (video: HTMLVideoElement | null) => {
+      if (!video) return
+      const playPromise = video.play()
+      if (playPromise !== undefined) {
+        playPromise.catch(error => {
+          console.warn('Video autoplay failed:', error)
+        })
       }
-      playVideo()
     }
-  }, [activeTab, hasVideoStarted])
+
+    // Play the active video
+    if (activeTab === 'guide') {
+      playVideo(guideVideoRef.current)
+    } else {
+      playVideo(autopilotVideoRef.current)
+    }
+  }, [activeTab, videoInView])
 
   React.useLayoutEffect(() => {
     const activeIndex = tabs.findIndex(tab => tab.value === activeTab)
@@ -121,15 +117,28 @@ export default function What() {
               animate={shouldAnimate ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 1.4, y: 200 }}
               transition={{ duration: 0.4, delay: 0.9, ease: "easeInOut" }}
               className="w-full relative"
+              ref={containerRef}
             >
-              <div className="aspect-video bg-gradient-to-br from-primary/10 to-accent/10 rounded-4xl border border-border/50 overflow-hidden">
+              <div className="aspect-video bg-gradient-to-br from-primary/10 to-accent/10 rounded-4xl border border-border/50 overflow-hidden relative">
                 <video
-                  ref={videoRef}
-                  src={activeTab === 'guide' ? 'https://pub-7f94223bba044f018e2c8e158d67b673.r2.dev/navio-guide.mp4' : 'https://pub-7f94223bba044f018e2c8e158d67b673.r2.dev/navio-autopilot.mp4'}
-                  className="w-full h-full object-cover"
+                  ref={guideVideoRef}
+                  src="https://pub-7f94223bba044f018e2c8e158d67b673.r2.dev/navio-guide.mp4"
+                  className="w-full h-full object-cover absolute inset-0"
+                  style={{ display: activeTab === 'guide' ? 'block' : 'none' }}
                   muted
                   loop
                   playsInline
+                  preload="auto"
+                />
+                <video
+                  ref={autopilotVideoRef}
+                  src="https://pub-7f94223bba044f018e2c8e158d67b673.r2.dev/navio-autopilot.mp4"
+                  className="w-full h-full object-cover absolute inset-0"
+                  style={{ display: activeTab === 'autopilot' ? 'block' : 'none' }}
+                  muted
+                  loop
+                  playsInline
+                  preload="auto"
                 />
               </div>
               <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent pointer-events-none"></div>

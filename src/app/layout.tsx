@@ -10,16 +10,8 @@ export const metadata = {
   title: "Navio - Software, effortless",
   description: "AI expert that lives in your product, guiding users and automating tasks.",
   icons: {
-    icon: [
-      {
-        url: "/Navio-D.svg",
-        media: "(prefers-color-scheme: light)",
-      },
-      {
-        url: "/Navio-L.svg",
-        media: "(prefers-color-scheme: dark)",
-      },
-    ],
+    icon: "/NAVIO.svg",
+    apple: "/NAVIO.svg",
   },
 };
 
@@ -30,7 +22,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <head>    
+      <head>
+        <link rel="icon" href="/NAVIO.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/NAVIO.svg" />
       </head>
       <body
         className={`${manrope.variable}`}

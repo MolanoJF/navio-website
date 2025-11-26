@@ -1,10 +1,9 @@
 {
   "/_not-found/page": "app/_not-found/page.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/pricing/page": "app/pricing/page.js",
-  "/dashboard/page": "app/dashboard/page.js",
-  "/legal/privacy/page": "app/legal/privacy/page.js",
-  "/legal/terms/page": "app/legal/terms/page.js",
   "/page": "app/page.js",
-  "/security/page": "app/security/page.js"
+  "/legal/terms/page": "app/legal/terms/page.js",
+  "/dashboard/page": "app/dashboard/page.js",
+  "/security/page": "app/security/page.js",
+  "/pricing/page": "app/pricing/page.js",
+  "/legal/privacy/page": "app/legal/privacy/page.js"
 }
