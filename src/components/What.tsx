@@ -47,27 +47,10 @@ export default function What() {
   }, [isInView])
 
   React.useEffect(() => {
-    if (videoRef.current && videoInView && !hasVideoStarted) {
-      const playPromise = videoRef.current.play()
-      if (playPromise !== undefined) {
-        playPromise.catch(error => {
-          console.warn('Video autoplay failed:', error)
-        })
-      }
-      setHasVideoStarted(true)
+    if (videoRef.current && activeTab) {
+      videoRef.current.currentTime = 0
     }
-  }, [videoInView, hasVideoStarted])
-
-  React.useEffect(() => {
-    if (videoRef.current && hasVideoStarted) {
-      const playPromise = videoRef.current.play()
-      if (playPromise !== undefined) {
-        playPromise.catch(error => {
-          console.warn('Video autoplay failed on tab change:', error)
-        })
-      }
-    }
-  }, [activeTab, hasVideoStarted])
+  }, [activeTab])
 
   React.useLayoutEffect(() => {
     const activeIndex = tabs.findIndex(tab => tab.value === activeTab)
@@ -126,6 +109,7 @@ export default function What() {
                   muted
                   loop
                   playsInline
+                  autoPlay
                 />
               </div>
               <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent pointer-events-none"></div>
