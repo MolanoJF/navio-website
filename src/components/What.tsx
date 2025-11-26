@@ -37,8 +37,8 @@ export default function What() {
   const isInView = useInView(sectionRef, { once: true, margin: "0px 0px -100px 0px" })
   const [shouldAnimate, setShouldAnimate] = React.useState(false)
   const videoRef = React.useRef<HTMLVideoElement>(null)
-  const videoInView = useInView(videoRef, { amount: 1 })
   const [hasVideoStarted, setHasVideoStarted] = React.useState(false)
+  const videoContainerRef = React.useRef(null)
 
   React.useEffect(() => {
     if (isInView) {
@@ -47,39 +47,29 @@ export default function What() {
   }, [isInView])
 
   React.useEffect(() => {
-    if (videoRef.current && videoInView && !hasVideoStarted) {
-      // Wait for video to load before attempting to play
-      const handleCanPlay = () => {
-        const playPromise = videoRef.current?.play()
-        if (playPromise !== undefined) {
-          playPromise.catch(error => {
-            console.warn('Video autoplay failed:', error)
-          })
+    if (videoRef.current && !hasVideoStarted && isInView) {
+      const playVideo = async () => {
+        try {
+          await videoRef.current?.play()
+          setHasVideoStarted(true)
+        } catch (error) {
+          console.warn('Video autoplay failed:', error)
         }
       }
-
-      if (videoRef.current.readyState >= 2) {
-        // Video is already loaded
-        handleCanPlay()
-      } else {
-        // Wait for video to load
-        videoRef.current.addEventListener('canplay', handleCanPlay, { once: true })
-        return () => {
-          videoRef.current?.removeEventListener('canplay', handleCanPlay)
-        }
-      }
-      setHasVideoStarted(true)
+      playVideo()
     }
-  }, [videoInView, hasVideoStarted])
+  }, [isInView, hasVideoStarted])
 
   React.useEffect(() => {
-    if (videoRef.current && hasVideoStarted && videoRef.current.readyState >= 2) {
-      const playPromise = videoRef.current.play()
-      if (playPromise !== undefined) {
-        playPromise.catch(error => {
+    if (videoRef.current && hasVideoStarted) {
+      const playVideo = async () => {
+        try {
+          await videoRef.current?.play()
+        } catch (error) {
           console.warn('Video autoplay failed on tab change:', error)
-        })
+        }
       }
+      playVideo()
     }
   }, [activeTab, hasVideoStarted])
 
@@ -140,7 +130,6 @@ export default function What() {
                   muted
                   loop
                   playsInline
-                  autoPlay
                 />
               </div>
               <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent pointer-events-none"></div>
