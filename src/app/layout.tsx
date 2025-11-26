@@ -11,7 +11,6 @@ export const metadata = {
   description: "AI expert that lives in your product, guiding users and automating tasks.",
   icons: {
     icon: "/NAVIO.svg",
-    apple: "/NAVIO.svg",
   },
 };
 
@@ -22,9 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <head>
-        <link rel="icon" href="/NAVIO.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/NAVIO.svg" />
+      <head>    
       </head>
       <body
         className={`${manrope.variable}`}
